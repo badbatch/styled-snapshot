@@ -18,7 +18,7 @@ export default function toMatchStyledSnapshot(element: ReactNode) {
     warn("no styld-snapshot config found, falling back to defaults");
   }
 
-  const { elementsToUnwrap = [], reactTreeVisitor, unwrapCustomizer } = config;
+  const { elementsToUnwrap, reactTreeVisitor, unwrapCustomizer } = config;
   const { contexts, element: unwrappedElement } = unwrapElement(element, elementsToUnwrap, unwrapCustomizer);
   const componentTree = shallow(unwrappedElement);
   let serializedTree = toJson(componentTree);

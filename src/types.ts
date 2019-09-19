@@ -4,6 +4,7 @@ import {
   ComponentType,
   Consumer,
   ConsumerProps,
+  ExoticComponent,
   ForwardRefExoticComponent,
   FunctionComponent,
   MemoExoticComponent,
@@ -37,10 +38,13 @@ export type ForwardRefElement = ReactElement<
   }
 >;
 
+export type FragmentElement = ReactElement<PropsWithChildren<{}>, ExoticComponent<{ children?: ReactNode }>>;
+
 export type MandatoryUnwrapElement =
   | ContextConsumerElement
   | ContextProviderElement
   | ForwardRefElement
+  | FragmentElement
   | MemoElement
   | MemoExoticComponent<ComponentType>
   | ReactPortal;

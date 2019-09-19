@@ -35,12 +35,6 @@ describe("toMandatoryUnwrap", () => {
       });
     });
 
-    describe("when a Fragment is passed in", () => {
-      it("should return false", () => {
-        expect(toMandatoryUnwrap(<></>)).toBe(false);
-      });
-    });
-
     describe("when a Functional component is passed in", () => {
       it("should return false", () => {
         expect(toMandatoryUnwrap(<FunctionComponent />)).toBe(false);
@@ -64,6 +58,12 @@ describe("toMandatoryUnwrap", () => {
     describe("when a ForwardRef is passed in", () => {
       it("should return true", () => {
         expect(toMandatoryUnwrap(<ForwardRefComponent />)).toBe(true);
+      });
+    });
+
+    describe("when a Fragment is passed in", () => {
+      it("should return true", () => {
+        expect(toMandatoryUnwrap(<></>)).toBe(true);
       });
     });
 

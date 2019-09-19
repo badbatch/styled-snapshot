@@ -100,5 +100,19 @@ describe("unwrapElement", () => {
         expect(getElementName(result.element)).toBe("FunctionComponent");
       });
     });
+
+    describe.only("when a Fragment element and elements with ignore data attribute are passed in", () => {
+      it("should return the unwrapped element", () => {
+        const result = unwrapElement(
+          <>
+            <div data-styled-ignore />
+            <ClassComponent />
+            <div data-styled-ignore />
+          </>,
+        );
+
+        expect(getElementName(result.element)).toBe("ClassComponent");
+      });
+    });
   });
 });
