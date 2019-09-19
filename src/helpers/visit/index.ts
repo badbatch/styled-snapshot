@@ -41,7 +41,9 @@ function visitNode(treeNode: TreeNode, visitor?: ReactTreeVisitor) {
   }
 
   if (treeNode.children) {
-    visitChildren(treeNode.children, visitor);
+    treeNode.children.forEach(child => {
+      visitNode(child);
+    });
   }
 }
 

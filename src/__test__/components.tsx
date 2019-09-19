@@ -71,11 +71,16 @@ export const SerializeComponent = () => {
       consumer={<ThemeContext.Consumer>{() => <div />}</ThemeContext.Consumer>}
       element={<FunctionComponent />}
       forwardRef={<ForwardRefComponent />}
+      fragment={<></>}
       memo={<MemoComponent />}
       portal={portal}
       provider={<ThemeContext.Provider value="" />}
       renderProp={() => <FunctionComponent />}
       styled={StyledDiv}
-    />
+    >
+      <ForwardRefComponent />
+      <FunctionComponent />
+      <MemoComponent />
+    </ClassComponent>
   );
 };

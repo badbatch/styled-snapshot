@@ -1,6 +1,6 @@
 import { Func } from "@repodog/types";
 import { ComponentType } from "enzyme";
-import { ReactElement, ReactPortal, Ref } from "react";
+import { ReactElement, ReactFragment, ReactPortal, Ref } from "react";
 import { ContextConsumerElement, ContextProviderElement, ForwardRefElement, MemoElement } from "../types";
 
 export interface ComponentProps {
@@ -9,6 +9,7 @@ export interface ComponentProps {
   consumer?: ContextConsumerElement;
   element?: ReactElement;
   forwardRef?: ForwardRefElement;
+  fragment?: ReactFragment;
   innerRef?: Ref<HTMLDivElement>;
   memo?: MemoElement;
   portal?: ReactPortal;

@@ -11,6 +11,7 @@ exports[`visit when run over a serialized component tree should return the corre
   }
   element={<FunctionComponent />}
   forwardRef={<ForwardRef />}
+  fragment={<React.Fragment />}
   memo={<Memo(MemoComponent) />}
   portal={<ClassComponent />}
   provider={
@@ -20,5 +21,9 @@ exports[`visit when run over a serialized component tree should return the corre
   }
   renderProp={<FunctionComponent />}
   styled={Symbol(styled.div)}
-/>
+>
+  <ForwardRefComponent />
+  <FunctionComponent />
+  <MemoComponent />
+</ClassComponent>
 `;
