@@ -1,4 +1,4 @@
-import { isFunction } from "lodash";
+import { isFunction, isString } from "lodash";
 import React, {
   ComponentClass,
   ComponentType,
@@ -8,17 +8,19 @@ import React, {
   ReactNode,
   ReactPortal,
 } from "react";
-import { ContextConsumer, ContextProvider, ForwardRef, Portal, typeOf } from "react-is";
+import { ContextConsumer, ContextProvider, Element, ForwardRef, Portal, typeOf } from "react-is";
 import {
   ComponentTypeElement,
   ContextConsumerElement,
   ContextProviderElement,
+  DomElement,
   ForwardRefElement,
   MemoElement,
   UnwrapCustomizer,
   ValidElement,
 } from "../../types";
 import getElementName from "../get-element-name";
+import hasUnwrapDataAttribute from "../has-unwrap-data-attribute";
 import isClassComponent from "../is-class-component";
 import isComponentType from "../is-component-type";
 import isMemoType from "../is-memo-type";
@@ -57,6 +59,10 @@ function getChildElement(element: ValidElement): ValidElement | ReactNode {
       const portal = element as ReactPortal;
       childElement = portal.children;
       break;
+    case typeOf(element) === Element && isString(element.type):
+      const domElement = element as DomElement;
+      childElement = domElement.props.children;
+      break;
     // no default
   }
 
@@ -84,15 +90,16 @@ function unwrap(
 ): ComponentTypeElement {
   const isComponent = isComponentType(element);
   const toUnwrap = toMandatoryUnwrap(element);
+  const hasDataAttr = hasUnwrapDataAttribute(element);
 
-  if (!isComponent && !toUnwrap) {
+  if (!isComponent && !toUnwrap && !hasDataAttr) {
     const message = `unwrap expected to receive a valid element, but received a ${String(typeOf(element))}`;
     throw new TypeError(message);
   }
 
   let elementToUnwrap: string | undefined;
 
-  if (isComponent && !toUnwrap) {
+  if (isComponent && !toUnwrap && !hasDataAttr) {
     const componentTypeElement = element as ComponentTypeElement;
     elementToUnwrap = elementsToUnwrap.find(name => getElementName(componentTypeElement) === name);
     if (!elementToUnwrap) return componentTypeElement;
@@ -103,7 +110,7 @@ function unwrap(
 
 export default function unwrapElement(
   element: ReactNode,
-  elementsToUnwrap: string[],
+  elementsToUnwrap: string[] = [],
   unwrapCustomizer?: UnwrapCustomizer,
 ) {
   contexts = new Map();

@@ -1,11 +1,13 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { warn } from "@repodog/helpers";
+import { shallow } from "enzyme";
+import toJson from "enzyme-to-json";
 import { isFunction } from "lodash";
-import { ReactNode } from 'react';
-import loadConfig from './helpers/load-config';
-import unwrapElement from './helpers/unwrap-element';
-import visit from './helpers/visit';
-import { StyledSnapshotConfig } from './types';
+import { ReactNode } from "react";
+import isStyledComponent from "./helpers/is-styled-component";
+import loadConfig from "./helpers/load-config";
+import unwrapElement from "./helpers/unwrap-element";
+import visit from "./helpers/visit";
+import { StyledSnapshotConfig } from "./types";
 
 export default function toMatchStyledSnapshot(element: ReactNode) {
   let config: StyledSnapshotConfig = {};
@@ -13,7 +15,7 @@ export default function toMatchStyledSnapshot(element: ReactNode) {
   try {
     config = loadConfig();
   } catch (error) {
-    // no catch
+    warn("no styld-snapshot config found, falling back to defaults");
   }
 
   const { elementsToUnwrap = [], reactTreeVisitor, unwrapCustomizer } = config;
@@ -32,9 +34,9 @@ export default function toMatchStyledSnapshot(element: ReactNode) {
 
   styledComponents.forEach(wrapper => {
     const serializedSubTree = toJson(wrapper.dive());
-    const { forwardedComponent, ...otherProps } = get(serializedSubTree, ['props'], {});
+    const { forwardedComponent, ...otherProps } = get(serializedSubTree, ["props"], {});
 
-    if (!forwardedComponent || !forwardedComponent.displayName || otherProps['data-component-decoration']) {
+    if (!forwardedComponent || !forwardedComponent.displayName || otherProps["data-component-decoration"]) {
       return;
     }
 
@@ -44,6 +46,7 @@ export default function toMatchStyledSnapshot(element: ReactNode) {
     if (uniqueStyledComponents.includes(id)) return;
 
     uniqueStyledComponents.push(id);
-    const rules = format(collatedCSS, { parser: 'css' });
+    const rules = format(collatedCSS, { parser: "css" });
     it(`${name} ${displayName}`, () => expect(rules).toMatchSnapshot());
+  });
 }

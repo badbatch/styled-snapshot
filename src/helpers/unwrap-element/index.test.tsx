@@ -9,6 +9,7 @@ import {
   PortalComponent,
   SCContextComponent,
 } from "../../__test__/components";
+import { UnwrapElementResult } from "../../types";
 import getElementName from "../get-element-name";
 
 describe("unwrapElement", () => {
@@ -21,9 +22,14 @@ describe("unwrapElement", () => {
     });
 
     describe("when a ContextComponent element is passed in", () => {
+      let result: UnwrapElementResult;
+
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(<ContextComponent />, ["ContextComponent", "ContextConsumerComponent"]);
+        result = unwrapElement(<ContextComponent />, ["ContextComponent", "ContextConsumerComponent"]);
         expect(getElementName(result.element)).toBe("ClassComponent");
+      });
+
+      it("should have the theme in the element props", () => {
         expect(result.element.props).toEqual({ value: "dark" });
       });
     });
@@ -64,15 +70,34 @@ describe("unwrapElement", () => {
     });
 
     describe("when a SCContextComponent element is passed in", () => {
-      it("should return the unwrapped element", () => {
-        const result = unwrapElement(<SCContextComponent />, [
+      let result: UnwrapElementResult;
+
+      beforeAll(() => {
+        result = unwrapElement(<SCContextComponent />, [
           "SCContextComponent",
           "ThemeProvider",
           "WithThemeClassComponent",
         ]);
+      });
 
+      it("should return the unwrapped element", () => {
         expect(getElementName(result.element)).toBe("ClassComponent");
+      });
+
+      it("should have the theme in the element props", () => {
         expect(result.element.props).toEqual({ theme: { type: "light" } });
+      });
+    });
+
+    describe("when an element with nowrap data attribute is passed in", () => {
+      it("should return the unwrapped element", () => {
+        const result = unwrapElement(
+          <div data-styled-unwrap>
+            <ClassComponent data-styled-unwrap />
+          </div>,
+        );
+
+        expect(getElementName(result.element)).toBe("FunctionComponent");
       });
     });
   });

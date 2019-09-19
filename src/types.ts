@@ -1,5 +1,4 @@
 import { ObjectMap } from "@repodog/types";
-import { Json } from "enzyme-to-json";
 import {
   ComponentClass,
   ComponentType,
@@ -28,6 +27,8 @@ export type ContextConsumerElement = ReactElement<ConsumerProps<any>, Consumer<a
 // tslint:disable-next-line no-any
 export type ContextProviderElement = ReactElement<ProviderProps<any>, Provider<any> & { _context: PrivateContext }>;
 
+export type DomElement = ReactElement<PropsWithChildren<{}>, string>;
+
 export type ForwardRefElement = ReactElement<
   PropsWithChildren<{}>,
   ForwardRefExoticComponent<PropsWithoutRef<Element> & RefAttributes<PropsWithChildren<{}>>> & {
@@ -51,7 +52,7 @@ export interface PrivateContext {
   Provider: Provider<any>; // tslint:disable-line no-any
 }
 
-export type ValidElement = ComponentTypeElement | MandatoryUnwrapElement;
+export type ValidElement = ComponentTypeElement | MandatoryUnwrapElement | DomElement;
 
 export type ReactTreeVisitor = (node: ObjectMap) => void;
 
@@ -72,3 +73,8 @@ export interface SerializedTree {
 export type TreeNode = SerializedTree;
 
 export type UnwrapCustomizer = (element: ValidElement) => ValidElement | ReactNode;
+
+export interface UnwrapElementResult {
+  contexts: Map<React.ExoticComponent<React.ConsumerProps<any>>, any>; // tslint:disable-line no-any
+  element: ComponentTypeElement;
+}
