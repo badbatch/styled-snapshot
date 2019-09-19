@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`visit when run over a serialized component tree should return the correct structure 1`] = `
+<ClassComponent
+  Component={Symbol(FunctionComponent)}
+  callback={[Function]}
+  consumer={
+    <Context.Consumer>
+      <div />
+    </Context.Consumer>
+  }
+  element={<FunctionComponent />}
+  forwardRef={<ForwardRef />}
+  memo={<Memo(MemoComponent) />}
+  portal={<ClassComponent />}
+  provider={
+    <Context.Provider
+      value=""
+    />
+  }
+  renderProp={<FunctionComponent />}
+  styled={Symbol(styled.div)}
+/>
+`;
