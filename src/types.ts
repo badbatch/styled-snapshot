@@ -61,7 +61,13 @@ export interface StyledSnapshotConfig {
   unwrapCustomizer?: UnwrapCustomizer;
 }
 
-export type SerializedTree = Json;
+export interface SerializedTree {
+  $$typeof: symbol;
+  children: SerializedTree[] | ReactElement[];
+  node: ReactElement;
+  props: ObjectMap;
+  type: string;
+}
 
 export type TreeNode = SerializedTree;
 

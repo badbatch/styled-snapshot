@@ -1,13 +1,16 @@
 import { Func, ObjectMap } from "@repodog/types";
-import { castArray, isFunction } from "lodash";
+import { Json } from "enzyme-to-json";
+import { castArray, isFunction, isPlainObject } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { ForwardRef, isElement, isPortal } from "react-is";
+import { PORTAL, RENDER_PROP } from "../../constants";
 import { ReactTreeVisitor, SerializedTree, TreeNode } from "../../types";
+import createSnapshotElement from "../create-snapshot-element";
 import getComponentName from "../get-component-name";
 import isFunctionComponent from "../is-function-component";
 
-export default function visit(serializedComponent: SerializedTree, visitor?: ReactTreeVisitor) {
-  visitNode(serializedComponent, visitor);
+export default function visit(serializedComponent: Json, visitor?: ReactTreeVisitor) {
+  visitNode(serializedComponent as SerializedTree, visitor);
   return serializedComponent;
 }
 
@@ -26,7 +29,7 @@ function visitFunctionProp(val: Func | FunctionComponent) {
 
     try {
       const output = func();
-      return isElement(output) ? output : val;
+      return isElement(output) ? createSnapshotElement(RENDER_PROP, output) : val;
     } catch (error) {
       return val;
     }
@@ -41,8 +44,10 @@ function visitNode(treeNode: TreeNode, visitor?: ReactTreeVisitor) {
   }
 
   if (treeNode.children) {
-    treeNode.children.forEach(child => {
-      visitNode(child);
+    const children = treeNode.children as TreeNode[];
+
+    children.forEach((child, index) => {
+      treeNode.children[index] = visitElement(child.node);
     });
   }
 }
@@ -59,9 +64,9 @@ function visitProps(props: ObjectMap, visitor?: ReactTreeVisitor) {
         props[key] = visitElement(val, visitor);
         break;
       case isPortal(val):
-        props[key] = val.children;
+        props[key] = createSnapshotElement(PORTAL, val.children);
         break;
-      case val.$$typeof === ForwardRef:
+      case isPlainObject(val) && val.$$typeof === ForwardRef:
         props[key] = Symbol(getComponentName(val));
       // no default
     }

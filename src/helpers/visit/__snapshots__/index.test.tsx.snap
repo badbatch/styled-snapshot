@@ -6,24 +6,24 @@ exports[`visit when run over a serialized component tree should return the corre
   callback={[Function]}
   consumer={
     <Context.Consumer>
-      <div />
+      <RenderProp(div) />
     </Context.Consumer>
   }
   element={<FunctionComponent />}
   forwardRef={<ForwardRef />}
   fragment={<React.Fragment />}
   memo={<Memo(MemoComponent) />}
-  portal={<ClassComponent />}
+  portal={<Portal(ClassComponent) />}
   provider={
     <Context.Provider
       value=""
     />
   }
-  renderProp={<FunctionComponent />}
+  renderProp={<RenderProp(FunctionComponent) />}
   styled={Symbol(styled.div)}
 >
-  <ForwardRefComponent />
+  <ForwardRef />
   <FunctionComponent />
-  <MemoComponent />
+  <Memo(MemoComponent) />
 </ClassComponent>
 `;
