@@ -1,3 +1,4 @@
+import { ObjectMap } from "@repodog/types";
 import React, { Component, ComponentType, forwardRef, memo } from "react";
 import { createPortal } from "react-dom";
 import { ThemeContext, ThemeProvider, withTheme } from "styled-components";
@@ -63,23 +64,23 @@ SCContextComponent.displayName = "SCContextComponent";
 export const WithThemeClassComponent = withTheme<ComponentType<any>>(ClassComponent); // tslint:disable-line no-any
 WithThemeClassComponent.displayName = "WithThemeClassComponent";
 
-export const SerializeComponent = () => {
+export const SerializeComponent = (props: ObjectMap = {}) => {
   return (
     <ClassComponent
       Component={FunctionComponent}
       callback={() => null}
       consumer={<ThemeContext.Consumer>{() => <div />}</ThemeContext.Consumer>}
-      element={<FunctionComponent />}
+      element={<FunctionComponent {...props} />}
       forwardRef={<ForwardRefComponent />}
       fragment={<></>}
       memo={<MemoComponent />}
       portal={portal}
       provider={<ThemeContext.Provider value="" />}
-      renderProp={() => <FunctionComponent />}
+      renderProp={() => <FunctionComponent {...props} />}
       styled={StyledDiv}
     >
       <ForwardRefComponent />
-      <FunctionComponent />
+      <FunctionComponent {...props} />
       <MemoComponent />
     </ClassComponent>
   );

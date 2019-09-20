@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`visit when a visitor is passed in to remove certain data should return the correct structure 1`] = `
+<ClassComponent
+  Component={Symbol(FunctionComponent)}
+  callback={[Function]}
+  consumer={
+    <Context.Consumer>
+      <RenderProp(div) />
+    </Context.Consumer>
+  }
+  element={
+    <FunctionComponent
+      theme={null}
+    />
+  }
+  forwardRef={<ForwardRef />}
+  fragment={<React.Fragment />}
+  memo={<Memo(MemoComponent) />}
+  portal={<Portal(ClassComponent) />}
+  provider={
+    <Context.Provider
+      value=""
+    />
+  }
+  renderProp={
+    <RenderProp(FunctionComponent)
+      theme={null}
+    />
+  }
+  styled={Symbol(styled.div)}
+>
+  <ForwardRef />
+  <FunctionComponent
+    theme={null}
+  />
+  <Memo(MemoComponent) />
+</ClassComponent>
+`;
+
 exports[`visit when run over a serialized component tree should return the correct structure 1`] = `
 <ClassComponent
   Component={Symbol(FunctionComponent)}

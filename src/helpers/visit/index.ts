@@ -20,7 +20,7 @@ function visitChildren(children: ReactElement | ReactElement[], visitor?: ReactT
   });
 }
 
-function visitFunctionProp(val: Func | FunctionComponent) {
+function visitFunctionProp(val: Func | FunctionComponent, visitor?: ReactTreeVisitor) {
   if (isFunctionComponent(val)) {
     const component = val as FunctionComponent;
     return Symbol(getComponentName(component));
@@ -29,7 +29,7 @@ function visitFunctionProp(val: Func | FunctionComponent) {
 
     try {
       const output = func();
-      return isElement(output) ? createSnapshotElement(RENDER_PROP, output) : val;
+      return isElement(output) ? createSnapshotElement(RENDER_PROP, visitElement(output, visitor)) : val;
     } catch (error) {
       return val;
     }
@@ -47,7 +47,7 @@ function visitNode(treeNode: TreeNode, visitor?: ReactTreeVisitor) {
     const children = treeNode.children as TreeNode[];
 
     children.forEach((child, index) => {
-      treeNode.children[index] = visitElement(child.node);
+      treeNode.children[index] = visitElement(child.node, visitor);
     });
   }
 }
@@ -58,7 +58,7 @@ function visitProps(props: ObjectMap, visitor?: ReactTreeVisitor) {
 
     switch (true) {
       case isFunction(val):
-        props[key] = visitFunctionProp(val);
+        props[key] = visitFunctionProp(val, visitor);
         break;
       case isElement(val):
         props[key] = visitElement(val, visitor);
