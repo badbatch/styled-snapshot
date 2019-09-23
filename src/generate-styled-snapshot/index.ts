@@ -1,4 +1,3 @@
-import { warn } from "@repodog/helpers";
 import { shallow } from "enzyme";
 import toJson, { Json } from "enzyme-to-json";
 import { isFunction } from "lodash";
