@@ -3,8 +3,12 @@ import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import { isFunction } from "lodash";
 import { ReactNode } from "react";
-import isStyledComponent from "./helpers/is-styled-component";
+import collateCSS from "./helpers/collate-css";
+import { createCSSHash } from "./helpers/create-css-hash";
+import getStyledComponents from "./helpers/get-styled-components";
+import getStyledDisplayName from "./helpers/get-styled-display-name";
 import loadConfig from "./helpers/load-config";
+import toCollateCSS from "./helpers/to-collate-css";
 import unwrapElement from "./helpers/unwrap-element";
 import visit from "./helpers/visit";
 import { StyledSnapshotConfig } from "./types";
@@ -28,25 +32,18 @@ export default function toMatchStyledSnapshot(element: ReactNode) {
   }
 
   it(name, () => expect(serializedTree).toMatchSnapshot());
+  const uniqueStyledComponents: string[] = [];
 
-  const styledComponents = componentTree.findWhere(node => isStyledComponent(node.type()));
-  const uniqueStyledComponents = [];
+  getStyledComponents(componentTree).forEach(wrapper => {
+    const serializedStyledTree = toJson(wrapper.dive());
+    if (!toCollateCSS(serializedStyledTree)) return;
 
-  styledComponents.forEach(wrapper => {
-    const serializedSubTree = toJson(wrapper.dive());
-    const { forwardedComponent, ...otherProps } = get(serializedSubTree, ["props"], {});
-
-    if (!forwardedComponent || !forwardedComponent.displayName || otherProps["data-component-decoration"]) {
-      return;
-    }
-
-    const { componentStyle, displayName } = forwardedComponent;
-    const collatedCSS = collateCSS(displayName, componentStyle.rules, { ...otherProps, theme });
-    const id = md5(`${displayName}-${collatedCSS.trim()}`);
+    const { formatted, unformatted } = collateCSS(serializedStyledTree, contexts);
+    const displayName = getStyledDisplayName(serializedStyledTree);
+    const id = createCSSHash(displayName, unformatted);
     if (uniqueStyledComponents.includes(id)) return;
 
     uniqueStyledComponents.push(id);
-    const rules = format(collatedCSS, { parser: "css" });
-    it(`${name} ${displayName}`, () => expect(rules).toMatchSnapshot());
+    it(`${name} ${displayName}`, () => expect(formatted).toMatchSnapshot());
   });
 }

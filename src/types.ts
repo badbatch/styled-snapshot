@@ -1,4 +1,5 @@
-import { ObjectMap } from "@repodog/types";
+import { Func, ObjectMap } from "@repodog/types";
+import { ShallowWrapper } from "enzyme";
 import {
   ComponentClass,
   ComponentType,
@@ -18,6 +19,7 @@ import {
   RefAttributes,
   RefForwardingComponent,
 } from "react";
+import { AnyStyledComponent } from "styled-components";
 
 export type ComponentTypeElement =
   | ReactElement<PropsWithChildren<{}>, ComponentClass>
@@ -30,13 +32,14 @@ export type ContextProviderElement = ReactElement<ProviderProps<any>, Provider<a
 
 export type DomElement = ReactElement<PropsWithChildren<{}>, string>;
 
-export type ForwardRefElement = ReactElement<
-  PropsWithChildren<{}>,
-  ForwardRefExoticComponent<PropsWithoutRef<Element> & RefAttributes<PropsWithChildren<{}>>> & {
-    readonly $$typeof: symbol;
-    render: RefForwardingComponent<Element, PropsWithChildren<{}>>;
-  }
->;
+export type ForwardRefComponent = ForwardRefExoticComponent<
+  PropsWithoutRef<Element> & RefAttributes<PropsWithChildren<{}>>
+> & {
+  readonly $$typeof: symbol;
+  render: RefForwardingComponent<Element, PropsWithChildren<{}>>;
+};
+
+export type ForwardRefElement = ReactElement<PropsWithChildren<{}>, ForwardRefComponent>;
 
 export type FragmentElement = ReactElement<PropsWithChildren<{}>, ExoticComponent<{ children?: ReactNode }>>;
 
@@ -66,6 +69,16 @@ export interface StyledSnapshotConfig {
   unwrapCustomizer?: UnwrapCustomizer;
 }
 
+export type UnwrapCustomizer = (element: ValidElement) => ValidElement | ReactNode;
+
+export type ComponentTree = ShallowWrapper<
+  {
+    children?: ReactNode;
+  },
+  Readonly<{}>,
+  React.Component<{}, {}, any> // tslint:disable-line no-any
+>;
+
 export interface SerializedTree {
   $$typeof: symbol;
   children: SerializedTree[] | ReactElement[];
@@ -76,9 +89,27 @@ export interface SerializedTree {
 
 export type TreeNode = SerializedTree;
 
-export type UnwrapCustomizer = (element: ValidElement) => ValidElement | ReactNode;
+export type ExtractedContexts = Map<React.ExoticComponent<React.ConsumerProps<any>>, any>; // tslint:disable-line no-any
 
 export interface UnwrapElementResult {
-  contexts: Map<React.ExoticComponent<React.ConsumerProps<any>>, any>; // tslint:disable-line no-any
+  contexts: ExtractedContexts;
   element: ComponentTypeElement;
+}
+
+export interface SCSerializedTree {
+  $$typeof: symbol;
+  children: null;
+  node: AnyStyledComponent;
+  props: SCSerializedTreeProps;
+  type: string;
+}
+
+export interface SCSerializedTreeProps {
+  forwardedComponent: SCForwardRefComponent;
+}
+
+export type SCForwardRefComponent = ForwardRefComponent & { componentStyle: SCComponentStyle; displayName: string };
+
+export interface SCComponentStyle {
+  rules: Array<string | number | Func>;
 }

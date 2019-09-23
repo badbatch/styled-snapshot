@@ -2,7 +2,7 @@ import { ObjectMap } from "@repodog/types";
 import React, { Component, ComponentType, forwardRef, memo } from "react";
 import { createPortal } from "react-dom";
 import { ThemeContext, ThemeProvider, withTheme } from "styled-components";
-import { StyledDiv } from "./styled";
+import { StyledDiv, StyledItem, StyledList } from "./styled";
 import { ComponentProps } from "./types";
 
 export class ClassComponent extends Component<ComponentProps> {
@@ -52,6 +52,19 @@ export const portal = createPortal(<ClassComponent />, document.createElement("d
 
 export const PortalComponent = () => portal;
 PortalComponent.displayName = "PortalComponent";
+
+export const SCComponent = () => (
+  <StyledDiv>
+    <ClassComponent />
+    <FunctionComponent />
+    <StyledList>
+      <StyledItem>One</StyledItem>
+      <StyledItem>Two</StyledItem>
+      <StyledItem>Three</StyledItem>
+      <StyledItem>Four</StyledItem>
+    </StyledList>
+  </StyledDiv>
+);
 
 export const SCContextComponent = () => (
   <ThemeProvider theme={{ type: "light" }}>

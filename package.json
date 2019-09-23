@@ -75,7 +75,6 @@
     "@repodog/commitlint-config": "^0.3.23",
     "@repodog/constants": "^0.3.23",
     "@repodog/eslint-config": "^0.3.23",
-    "@repodog/helpers": "^0.3.23",
     "@repodog/jest-config": "^0.3.24",
     "@repodog/lerna-config": "^0.3.23",
     "@repodog/markdownlint-config": "^0.3.23",
@@ -89,6 +88,8 @@
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/lodash": "^4.14.138",
+    "@types/md5": "^2.1.33",
+    "@types/prettier": "^1.18.2",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "@types/react-is": "^16.7.1",
@@ -119,7 +120,6 @@
     "lerna": "^3.16.4",
     "lodash": "^4.17.15",
     "markdownlint-cli": "^0.18.0",
-    "prettier": "^1.18.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "styled-components": "^4.3.2",
@@ -137,7 +137,10 @@
     "node": "^10.16.0"
   },
   "dependencies": {
+    "@repodog/helpers": "^0.3.23",
     "enzyme-to-json": "^3.4.0",
+    "md5": "^2.2.1",
+    "prettier": "^1.18.2",
     "react-is": "^16.9.0"
   }
 }
