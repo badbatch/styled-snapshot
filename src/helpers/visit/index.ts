@@ -1,5 +1,4 @@
 import { Func, ObjectMap } from "@repodog/types";
-import { Json } from "enzyme-to-json";
 import { castArray, isFunction, isPlainObject } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { ForwardRef, isElement, isPortal } from "react-is";
@@ -9,8 +8,8 @@ import createSnapshotElement from "../create-snapshot-element";
 import getComponentName from "../get-component-name";
 import isFunctionComponent from "../is-function-component";
 
-export default function visit(serializedComponent: Json, visitor?: ReactTreeVisitor) {
-  visitNode(serializedComponent as SerializedTree, visitor);
+export default function visit(serializedComponent: SerializedTree, visitor?: ReactTreeVisitor) {
+  visitNode(serializedComponent, visitor);
   return serializedComponent;
 }
 

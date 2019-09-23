@@ -1,5 +1,4 @@
 import { Func, ObjectMap } from "@repodog/types";
-import { Json } from "enzyme-to-json";
 import { isArray, isFunction } from "lodash";
 import { format } from "prettier";
 import { ExtractedContexts, SCComponentStyle, SCSerializedTree } from "../../types";
@@ -33,13 +32,13 @@ function collateRules(rules: SCComponentStyle["rules"], props: ObjectMap) {
   }, "");
 }
 
-export default function collateCSS(serializedTree: Json, contexts: ExtractedContexts) {
-  const { forwardedComponent, ...otherProps } = serializedTree.props as SCSerializedTree["props"];
+export default function collateCSS(serializedTree: SCSerializedTree, contexts?: ExtractedContexts) {
+  const { forwardedComponent, ...otherProps } = serializedTree.props;
   const { componentStyle } = forwardedComponent;
-  const unformatted = `{${collateRules(componentStyle.rules, { ...otherProps, ...contexts })}}`;
+  const unformatted = `{${collateRules(componentStyle.rules, { ...otherProps, ...(contexts || {}) })}}`;
 
   return {
-    formatted: format(unformatted, { parser: "css" }),
+    formatted: `\n${format(unformatted, { parser: "css" }).trim()}\n`,
     unformatted,
   };
 }

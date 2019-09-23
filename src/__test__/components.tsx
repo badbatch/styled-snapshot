@@ -66,6 +66,8 @@ export const SCComponent = () => (
   </StyledDiv>
 );
 
+SCComponent.displayName = "SCComponent";
+
 export const SCContextComponent = () => (
   <ThemeProvider theme={{ type: "light" }}>
     <WithThemeClassComponent />

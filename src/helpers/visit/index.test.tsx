@@ -11,6 +11,7 @@ describe("visit", () => {
     it("should return the correct structure", () => {
       const componentTree = shallow(<SerializeComponent />);
       const serializedTree = toJson(componentTree);
+      // @ts-ignore
       expect(visit(serializedTree)).toMatchSnapshot();
     });
   });
@@ -26,6 +27,7 @@ describe("visit", () => {
         }
       };
 
+      // @ts-ignore
       expect(visit(serializedTree, visitor)).toMatchSnapshot();
     });
   });

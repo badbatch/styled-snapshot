@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toMatchStyledSnapshot when a React element is passed in nodejs 1`] = `
+<styled.div>
+  <ClassComponent />
+  <FunctionComponent />
+  <ForwardRef(styled.ul)>
+    <ForwardRef(styled.li)>
+      One
+    </ForwardRef(styled.li)>
+    <ForwardRef(styled.li)>
+      Two
+    </ForwardRef(styled.li)>
+    <ForwardRef(styled.li)>
+      Three
+    </ForwardRef(styled.li)>
+    <ForwardRef(styled.li)>
+      Four
+    </ForwardRef(styled.li)>
+  </ForwardRef(styled.ul)>
+</styled.div>
+`;
+
+exports[`toMatchStyledSnapshot when a React element is passed in nodejs styled.div 1`] = `
+"
+{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  position: relative;
+}
+"
+`;
+
+exports[`toMatchStyledSnapshot when a React element is passed in nodejs styled.li 1`] = `
+"
+{
+  margin-left: 12px;
+
+  position: absolute;
+  padding: null;
+  &:last-child {
+    margin-left: 0;
+  }
+}
+"
+`;
+
+exports[`toMatchStyledSnapshot when a React element is passed in nodejs styled.ul 1`] = `
+"
+{
+  margin: 0;
+  padding: 0;
+}
+"
+`;

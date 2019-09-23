@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledDiv = styled.div`
   -webkit-font-smoothing: antialiased;
@@ -12,8 +12,14 @@ export const StyledList = styled.ul`
   padding: 0;
 `;
 
+const itemStyles = css`
+  ${props => (props.theme ? "position: relative" : "position: absolute")};
+  padding: ${props => props.theme && "12px"};
+`;
+
 export const StyledItem = styled.li`
   margin-left: 12px;
+  ${() => itemStyles};
 
   &:last-child {
     margin-left: 0;

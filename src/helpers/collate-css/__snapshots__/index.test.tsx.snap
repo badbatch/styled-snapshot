@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collateCSS when theme is passed in as false should return the correct structure 1`] = `
+"
+{
+  margin-left: 12px;
+
+  position: absolute;
+  padding: null;
+  &:last-child {
+    margin-left: 0;
+  }
+}
+"
+`;
+
+exports[`collateCSS when theme is passed in as true should return the correct structure 1`] = `
+"
+{
+  margin-left: 12px;
+
+  position: relative;
+  padding: 12px;
+  &:last-child {
+    margin-left: 0;
+  }
+}
+"
+`;
