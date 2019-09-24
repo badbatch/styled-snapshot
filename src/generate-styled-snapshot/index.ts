@@ -29,7 +29,7 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     serializedTree = visit(serializedTree, reactTreeVisitor);
   }
 
-  const uniqueStyledComponents: Map<string, [string, string]> = new Map();
+  const uniqueStyles: Map<string, [string, string]> = new Map();
 
   getStyledComponents(componentTree).forEach(wrapper => {
     const serializedStyledTree = toJson(wrapper.dive());
@@ -38,10 +38,10 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     const { formatted, unformatted } = collateCSS(serializedStyledTree, contexts);
     const displayName = getStyledDisplayName(serializedStyledTree);
     const id = createCSSHash(displayName, unformatted);
-    if (uniqueStyledComponents.has(id)) return;
+    if (uniqueStyles.has(id)) return;
 
-    uniqueStyledComponents.set(id, [displayName, formatted]);
+    uniqueStyles.set(id, [displayName, formatted]);
   });
 
-  return { component: serializedTree, styles: uniqueStyledComponents };
+  return { component: serializedTree, styles: uniqueStyles };
 }
