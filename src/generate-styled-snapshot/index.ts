@@ -44,5 +44,5 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     uniqueStyledComponents.set(id, [displayName, formatted]);
   });
 
-  return { component: serializedTree, children: uniqueStyledComponents };
+  return { component: serializedTree, styles: uniqueStyledComponents };
 }
