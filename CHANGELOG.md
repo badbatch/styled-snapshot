@@ -1,3 +1,11 @@
+#### 0.1.1 (2019-09-24)
+
+##### Bug Fixes
+
+*  remove private field from package.json ([ba61eab8](https://github.com/dylanaubrey/styled-snapshot/commit/ba61eab8064cc1c98630b7112ac32adc35c38ded))
+*  variable name change to make purpose clearer ([822c18f3](https://github.com/dylanaubrey/styled-snapshot/commit/822c18f3795cccbbf0852f6ab80c8adfe462cb2c))
+*  styled element display in snapshots ([cc529ef0](https://github.com/dylanaubrey/styled-snapshot/commit/cc529ef0c3e56ff2a75351ce7fde684b52101e5f))
+
 ### 0.1.0 (2019-09-24)
 
 ##### Documentation Changes
