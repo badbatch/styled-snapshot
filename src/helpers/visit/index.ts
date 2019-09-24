@@ -2,11 +2,13 @@ import { Func, ObjectMap } from "@repodog/types";
 import { castArray, isFunction, isPlainObject } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { ForwardRef, isElement, isPortal } from "react-is";
+import { isArray } from "util";
 import { PORTAL, RENDER_PROP } from "../../constants";
-import { ReactTreeVisitor, SerializedTree, TreeNode } from "../../types";
+import { ReactTreeVisitor, SCForwardRefElement, SerializedTree, TreeNode } from "../../types";
 import createSnapshotElement from "../create-snapshot-element";
 import getComponentName from "../get-component-name";
 import isFunctionComponent from "../is-function-component";
+import isStyledComponent from "../is-styled-component";
 
 export default function visit(serializedComponent: SerializedTree, visitor?: ReactTreeVisitor) {
   visitNode(serializedComponent, visitor);
@@ -14,9 +16,7 @@ export default function visit(serializedComponent: SerializedTree, visitor?: Rea
 }
 
 function visitChildren(children: ReactElement | ReactElement[], visitor?: ReactTreeVisitor) {
-  castArray(children).forEach(child => {
-    visitElement(child, visitor);
-  });
+  return castArray(children).map(child => visitElement(child, visitor));
 }
 
 function visitFunctionProp(val: Func | FunctionComponent, visitor?: ReactTreeVisitor) {
@@ -67,18 +67,25 @@ function visitProps(props: ObjectMap, visitor?: ReactTreeVisitor) {
         break;
       case isPlainObject(val) && val.$$typeof === ForwardRef:
         props[key] = Symbol(getComponentName(val));
+        break;
+      case isArray(val):
+        props[key] = visitChildren(props.children, visitor);
+        break;
       // no default
     }
   });
-
-  if (props.children) {
-    visitChildren(props.children, visitor);
-  }
 }
 
 function visitElement(element: ReactElement, visitor?: ReactTreeVisitor) {
   const nodeClone = { props: { ...element.props } };
   if (isFunction(visitor)) visitor(nodeClone);
+  let _element = element;
+
+  if (isStyledComponent(element.type)) {
+    const styledElement = element as SCForwardRefElement;
+    _element = { ...element, type: styledElement.type.displayName };
+  }
+
   visitProps(nodeClone.props, visitor);
-  return cloneElement(element, nodeClone.props);
+  return cloneElement(_element, nodeClone.props);
 }

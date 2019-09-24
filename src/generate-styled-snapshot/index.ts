@@ -1,6 +1,5 @@
 import { shallow } from "enzyme";
 import toJson, { Json } from "enzyme-to-json";
-import { isFunction } from "lodash";
 import { ReactNode } from "react";
 import collateCSS from "../helpers/collate-css";
 import { createCSSHash } from "../helpers/create-css-hash";
@@ -26,7 +25,7 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
   const componentTree = shallow(unwrappedElement);
   let serializedTree: Json | SerializedTree = toJson(componentTree);
 
-  if (isFunction(reactTreeVisitor) && "node" in serializedTree) {
+  if ("node" in serializedTree) {
     serializedTree = visit(serializedTree, reactTreeVisitor);
   }
 

@@ -110,6 +110,8 @@ export interface SCSerializedTreeProps {
 
 export type SCForwardRefComponent = ForwardRefComponent & { componentStyle: SCComponentStyle; displayName: string };
 
+export type SCForwardRefElement = ReactElement<PropsWithChildren<{}>, SCForwardRefComponent>;
+
 export interface SCComponentStyle {
   rules: Array<string | number | Func>;
 }

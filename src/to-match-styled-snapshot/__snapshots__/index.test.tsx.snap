@@ -4,20 +4,20 @@ exports[`toMatchStyledSnapshot when a React element is passed in nodejs 1`] = `
 <styled.div>
   <ClassComponent />
   <FunctionComponent />
-  <ForwardRef(styled.ul)>
-    <ForwardRef(styled.li)>
+  <styled.ul>
+    <styled.li>
       One
-    </ForwardRef(styled.li)>
-    <ForwardRef(styled.li)>
+    </styled.li>
+    <styled.li>
       Two
-    </ForwardRef(styled.li)>
-    <ForwardRef(styled.li)>
+    </styled.li>
+    <styled.li>
       Three
-    </ForwardRef(styled.li)>
-    <ForwardRef(styled.li)>
+    </styled.li>
+    <styled.li>
       Four
-    </ForwardRef(styled.li)>
-  </ForwardRef(styled.ul)>
+    </styled.li>
+  </styled.ul>
 </styled.div>
 `;
 
