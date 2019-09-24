@@ -74,7 +74,6 @@
     "@repodog/babel-config": "^0.3.23",
     "@repodog/build-references": "^0.3.23",
     "@repodog/commitlint-config": "^0.3.23",
-    "@repodog/constants": "^0.3.23",
     "@repodog/eslint-config": "^0.3.23",
     "@repodog/jest-config": "^0.3.24",
     "@repodog/lerna-config": "^0.3.23",
@@ -138,6 +137,7 @@
     "node": "^10.16.0"
   },
   "dependencies": {
+    "@repodog/constants": "^0.3.23",
     "@repodog/helpers": "^0.3.23",
     "enzyme-to-json": "^3.4.0",
     "md5": "^2.2.1",

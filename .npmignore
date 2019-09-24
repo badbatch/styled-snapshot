@@ -1,0 +1,10 @@
+.vscode/
+node_modules/
+.*
+*.config.js
+CHANGELOG.md
+codecov.yml
+test-setup.js
+tsconfig.*
+tslint.js
+typedoc.js
