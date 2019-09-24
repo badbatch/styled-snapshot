@@ -1,3 +1,9 @@
+#### 0.1.2 (2019-09-24)
+
+##### Bug Fixes
+
+*  add npmignore and missing dependency ([a877eb09](https://github.com/dylanaubrey/styled-snapshot/commit/a877eb09d21e981a193fbefeeee711c8fec67a8f))
+
 #### 0.1.1 (2019-09-24)
 
 ##### Bug Fixes
