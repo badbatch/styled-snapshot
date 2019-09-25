@@ -7,7 +7,7 @@ import getStyledComponents from "../helpers/get-styled-components";
 import getStyledDisplayName from "../helpers/get-styled-display-name";
 import loadConfig from "../helpers/load-config";
 import toCollateCSS from "../helpers/to-collate-css";
-import unwrapElement from "../helpers/unwrap-element";
+import unwrap from "../helpers/unwrap";
 import visit from "../helpers/visit";
 import { SerializedTree, StyledSnapshotConfig } from "../types";
 
@@ -21,7 +21,7 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
   }
 
   const { elementsToUnwrap, reactTreeVisitor, unwrapCustomizer } = config;
-  const { contexts, element: unwrappedElement } = unwrapElement(element, elementsToUnwrap, unwrapCustomizer);
+  const { contexts, element: unwrappedElement } = unwrap(element, elementsToUnwrap, unwrapCustomizer);
   const componentTree = shallow(unwrappedElement);
   let serializedTree: Json | SerializedTree = toJson(componentTree);
 

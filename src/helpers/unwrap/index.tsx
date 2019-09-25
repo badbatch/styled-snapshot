@@ -90,7 +90,7 @@ function getChildComponentTypeElement(element: ComponentType, props: PropsWithCh
   return childElement;
 }
 
-function unwrap(
+function unwrapNode(
   node: ReactNode,
   elementsToUnwrap: string[],
   unwrapCustomizer?: UnwrapCustomizer,
@@ -120,18 +120,14 @@ function unwrap(
     if (!elementToUnwrap) return componentTypeElement;
   }
 
-  return unwrap((unwrapCustomizer || getChildren)(singleNode as ValidElement), elementsToUnwrap, unwrapCustomizer);
+  return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement), elementsToUnwrap, unwrapCustomizer);
 }
 
-export default function unwrapElement(
-  node: ReactNode,
-  elementsToUnwrap: string[] = [],
-  unwrapCustomizer?: UnwrapCustomizer,
-) {
+export default function unwrap(node: ReactNode, elementsToUnwrap: string[] = [], unwrapCustomizer?: UnwrapCustomizer) {
   contexts = new Map();
 
   return {
     contexts,
-    element: unwrap(node, elementsToUnwrap, unwrapCustomizer),
+    element: unwrapNode(node, elementsToUnwrap, unwrapCustomizer),
   };
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import unwrapElement from ".";
+import unwrap from ".";
 import {
   ClassComponent,
   ContextComponent,
@@ -9,23 +9,23 @@ import {
   PortalComponent,
   SCContextComponent,
 } from "../../__test__/components";
-import { UnwrapElementResult } from "../../types";
+import { UnwrapResult } from "../../types";
 import getElementName from "../get-element-name";
 
-describe("unwrapElement", () => {
+describe("unwrap", () => {
   describe("element types to unwrap", () => {
     describe("when a ClassComponent element is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(<ClassComponent />, ["ClassComponent"]);
+        const result = unwrap(<ClassComponent />, ["ClassComponent"]);
         expect(getElementName(result.element)).toBe("FunctionComponent");
       });
     });
 
     describe("when a ContextComponent element is passed in", () => {
-      let result: UnwrapElementResult;
+      let result: UnwrapResult;
 
       it("should return the unwrapped element", () => {
-        result = unwrapElement(<ContextComponent />, ["ContextComponent", "ContextConsumerComponent"]);
+        result = unwrap(<ContextComponent />, ["ContextComponent", "ContextConsumerComponent"]);
         expect(getElementName(result.element)).toBe("ClassComponent");
       });
 
@@ -36,48 +36,44 @@ describe("unwrapElement", () => {
 
     describe("when a ContextProviderComponent element is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(<ContextProviderComponent />, ["ContextProviderComponent"]);
+        const result = unwrap(<ContextProviderComponent />, ["ContextProviderComponent"]);
         expect(getElementName(result.element)).toBe("ClassComponent");
       });
     });
 
     describe("when a ForwardRef element is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(<ForwardRefComponent />, ["ForwardRefComponent"]);
+        const result = unwrap(<ForwardRefComponent />, ["ForwardRefComponent"]);
         expect(getElementName(result.element)).toBe("ClassComponent");
       });
     });
 
     describe("when a FunctionalComponent element is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(<ContextProviderComponent />, ["ContextProviderComponent"]);
+        const result = unwrap(<ContextProviderComponent />, ["ContextProviderComponent"]);
         expect(getElementName(result.element)).toBe("ClassComponent");
       });
     });
 
     describe("when a MemoComponent element is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(<MemoComponent />, ["MemoComponent"]);
+        const result = unwrap(<MemoComponent />, ["MemoComponent"]);
         expect(getElementName(result.element)).toBe("FunctionComponent");
       });
     });
 
     describe("when a PortalComponent element is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(<PortalComponent />, ["PortalComponent"]);
+        const result = unwrap(<PortalComponent />, ["PortalComponent"]);
         expect(getElementName(result.element)).toBe("ClassComponent");
       });
     });
 
     describe("when a SCContextComponent element is passed in", () => {
-      let result: UnwrapElementResult;
+      let result: UnwrapResult;
 
       beforeAll(() => {
-        result = unwrapElement(<SCContextComponent />, [
-          "SCContextComponent",
-          "ThemeProvider",
-          "WithThemeClassComponent",
-        ]);
+        result = unwrap(<SCContextComponent />, ["SCContextComponent", "ThemeProvider", "WithThemeClassComponent"]);
       });
 
       it("should return the unwrapped element", () => {
@@ -91,7 +87,7 @@ describe("unwrapElement", () => {
 
     describe("when an element with nowrap data attribute is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(
+        const result = unwrap(
           <div data-styled-unwrap>
             <ClassComponent data-styled-unwrap />
           </div>,
@@ -101,9 +97,9 @@ describe("unwrapElement", () => {
       });
     });
 
-    describe.only("when a Fragment element and elements with ignore data attribute are passed in", () => {
+    describe("when a Fragment element and elements with ignore data attribute are passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrapElement(
+        const result = unwrap(
           <>
             <div data-styled-ignore />
             <ClassComponent />

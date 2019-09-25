@@ -91,7 +91,7 @@ export type TreeNode = SerializedTree;
 
 export type ExtractedContexts = Map<React.ExoticComponent<React.ConsumerProps<any>>, any>; // tslint:disable-line no-any
 
-export interface UnwrapElementResult {
+export interface UnwrapResult {
   contexts: ExtractedContexts;
   element: ComponentTypeElement;
 }
