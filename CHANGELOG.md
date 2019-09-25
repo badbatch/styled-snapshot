@@ -1,3 +1,9 @@
+#### 0.1.4 (2019-09-25)
+
+##### Bug Fixes
+
+*  add tsx to extensions for babel to transpile ([0241a628](https://github.com/dylanaubrey/styled-snapshot/commit/0241a628a2dded9fbb9006257cca6a9e719ed744))
+
 #### 0.1.3 (2019-09-25)
 
 ##### Bug Fixes
