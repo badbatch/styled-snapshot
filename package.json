@@ -18,6 +18,9 @@
   },
   "license": "MIT",
   "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
+  "main": "lib/main/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/types/index.d.ts",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "yarn run clean:libs && yarn run compile",
