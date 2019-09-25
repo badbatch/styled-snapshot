@@ -1,3 +1,9 @@
+#### 0.1.3 (2019-09-25)
+
+##### Bug Fixes
+
+*  add main fields to package.json ([7a2ab9a9](https://github.com/dylanaubrey/styled-snapshot/commit/7a2ab9a91241aa71dcd3acd76fd474345c6bd94f))
+
 #### 0.1.2 (2019-09-24)
 
 ##### Bug Fixes
