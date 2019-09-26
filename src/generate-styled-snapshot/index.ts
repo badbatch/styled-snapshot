@@ -6,6 +6,7 @@ import { createCSSHash } from "../helpers/create-css-hash";
 import getStyledComponents from "../helpers/get-styled-components";
 import getStyledDisplayName from "../helpers/get-styled-display-name";
 import loadConfig from "../helpers/load-config";
+import * as log from "../helpers/log";
 import toCollateCSS from "../helpers/to-collate-css";
 import unwrap from "../helpers/unwrap";
 import visit from "../helpers/visit";
@@ -20,7 +21,13 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     config = options;
   }
 
+  log.setLevel(options);
+  log.info("element passed to generateStyledSnapshot", element);
+
   const { contexts, element: unwrappedElement } = unwrap(element, config);
+
+  log.info("unwrapped element", unwrappedElement);
+
   const componentTree = shallow(unwrappedElement);
   let serializedTree: Json | SerializedTree = toJson(componentTree);
 
@@ -41,6 +48,8 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
 
     uniqueStyles.set(id, [displayName, formatted]);
   });
+
+  log.info("serialized element", serializedTree);
 
   return { component: serializedTree, styles: uniqueStyles };
 }

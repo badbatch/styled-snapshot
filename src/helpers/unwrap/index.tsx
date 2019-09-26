@@ -27,6 +27,7 @@ import hasUnwrapDataAttribute from "../has-unwrap-data-attribute";
 import isClassComponent from "../is-class-component";
 import isComponentType from "../is-component-type";
 import isMemoType from "../is-memo-type";
+import * as log from "../log";
 import toMandatoryUnwrap from "../to-mandatory-unwrap";
 
 let contexts: Map<Consumer<any>, any>; // tslint:disable-line no-any
@@ -96,8 +97,7 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
 
   if (filtered.length > 1) {
     const message = `unwrap expected one element after filtering, but received ${filtered.length}`;
-    console.error(message, filtered); // tslint:disable-line no-console
-    throw new Error();
+    log.error(message, filtered);
   }
 
   const [singleNode] = filtered;
@@ -107,8 +107,7 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
 
   if (!isComponent && !toUnwrap && !hasDataAttr) {
     const message = `unwrap expected to receive a valid element, but received a ${String(typeOf(singleNode))}`;
-    console.error(message, singleNode); // tslint:disable-line no-console
-    throw new Error();
+    log.error(message, singleNode);
   }
 
   let elementToUnwrap: string | undefined;
@@ -118,6 +117,8 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
     elementToUnwrap = elementsToUnwrap.find(name => getElementName(componentTypeElement) === name);
     if (!elementToUnwrap) return componentTypeElement;
   }
+
+  log.info("element to unwrap", singleNode);
 
   return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement), config);
 }

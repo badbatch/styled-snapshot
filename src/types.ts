@@ -66,6 +66,7 @@ export type ReactTreeVisitor = (node: ObjectMap) => void;
 export interface StyledSnapshotConfig {
   elementsToIgnore?: string[];
   elementsToUnwrap?: string[];
+  logLevel?: "error" | "warn" | "info";
   reactTreeVisitor?: ReactTreeVisitor;
   unwrapCustomizer?: UnwrapCustomizer;
 }
