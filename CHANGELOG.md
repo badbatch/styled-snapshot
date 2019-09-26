@@ -1,3 +1,9 @@
+#### 0.1.6 (2019-09-26)
+
+##### New Features
+
+*  add additional logging to unwrap execeptions ([d5bc7481](https://github.com/dylanaubrey/styled-snapshot/commit/d5bc7481eed36a26edda3a7a5e2dec683673b29b))
+
 #### 0.1.5 (2019-09-26)
 
 ##### Bug Fixes
