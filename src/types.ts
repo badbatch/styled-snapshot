@@ -64,6 +64,7 @@ export type ValidElement = ComponentTypeElement | MandatoryUnwrapElement | DomEl
 export type ReactTreeVisitor = (node: ObjectMap) => void;
 
 export interface StyledSnapshotConfig {
+  elementsToIgnore?: string[];
   elementsToUnwrap?: string[];
   reactTreeVisitor?: ReactTreeVisitor;
   unwrapCustomizer?: UnwrapCustomizer;

@@ -20,13 +20,12 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     config = options;
   }
 
-  const { elementsToUnwrap, reactTreeVisitor, unwrapCustomizer } = config;
-  const { contexts, element: unwrappedElement } = unwrap(element, elementsToUnwrap, unwrapCustomizer);
+  const { contexts, element: unwrappedElement } = unwrap(element, config);
   const componentTree = shallow(unwrappedElement);
   let serializedTree: Json | SerializedTree = toJson(componentTree);
 
   if ("node" in serializedTree) {
-    serializedTree = visit(serializedTree, reactTreeVisitor);
+    serializedTree = visit(serializedTree, config);
   }
 
   const uniqueStyles: Map<string, [string, string]> = new Map();

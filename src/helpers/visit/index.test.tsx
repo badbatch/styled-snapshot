@@ -5,14 +5,14 @@ import { has } from "lodash";
 import React from "react";
 import visit from ".";
 import { SerializeComponent } from "../../__test__/components";
+import { SerializedTree } from "../../types";
 
 describe("visit", () => {
   describe("when run over a serialized component tree", () => {
     it("should return the correct structure", () => {
       const componentTree = shallow(<SerializeComponent />);
       const serializedTree = toJson(componentTree);
-      // @ts-ignore
-      expect(visit(serializedTree)).toMatchSnapshot();
+      expect(visit(serializedTree as SerializedTree, {})).toMatchSnapshot();
     });
   });
 
@@ -21,14 +21,13 @@ describe("visit", () => {
       const componentTree = shallow(<SerializeComponent theme={{ type: "light" }} />);
       const serializedTree = toJson(componentTree);
 
-      const visitor = (node: ObjectMap) => {
+      const reactTreeVisitor = (node: ObjectMap) => {
         if (has(node, ["props", "theme"])) {
           node.props.theme = null;
         }
       };
 
-      // @ts-ignore
-      expect(visit(serializedTree, visitor)).toMatchSnapshot();
+      expect(visit(serializedTree as SerializedTree, { reactTreeVisitor })).toMatchSnapshot();
     });
   });
 });

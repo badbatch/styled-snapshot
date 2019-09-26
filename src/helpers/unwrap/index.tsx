@@ -18,7 +18,7 @@ import {
   ForwardRefElement,
   FragmentElement,
   MemoElement,
-  UnwrapCustomizer,
+  StyledSnapshotConfig,
   ValidElement,
 } from "../../types";
 import filterOutIgnoredElements from "../filter-out-ignored-elements";
@@ -90,12 +90,9 @@ function getChildComponentTypeElement(element: ComponentType, props: PropsWithCh
   return childElement;
 }
 
-function unwrapNode(
-  node: ReactNode,
-  elementsToUnwrap: string[],
-  unwrapCustomizer?: UnwrapCustomizer,
-): ComponentTypeElement {
-  const filtered = isArray(node) ? filterOutIgnoredElements(node) : [node];
+function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTypeElement {
+  const { elementsToIgnore, elementsToUnwrap = [], unwrapCustomizer } = config;
+  const filtered = isArray(node) ? filterOutIgnoredElements(node, elementsToIgnore) : [node];
 
   if (filtered.length > 1) {
     const message = `unwrap expected one element after filtering, but received ${filtered.length}`;
@@ -122,14 +119,14 @@ function unwrapNode(
     if (!elementToUnwrap) return componentTypeElement;
   }
 
-  return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement), elementsToUnwrap, unwrapCustomizer);
+  return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement), config);
 }
 
-export default function unwrap(node: ReactNode, elementsToUnwrap: string[] = [], unwrapCustomizer?: UnwrapCustomizer) {
+export default function unwrap(node: ReactNode, config: StyledSnapshotConfig) {
   contexts = new Map();
 
   return {
     contexts,
-    element: unwrapNode(node, elementsToUnwrap, unwrapCustomizer),
+    element: unwrapNode(node, config),
   };
 }
