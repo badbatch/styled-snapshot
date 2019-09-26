@@ -1,3 +1,9 @@
+#### 0.1.5 (2019-09-26)
+
+##### Bug Fixes
+
+*  add name param to toMatchStyledSnapshot function ([dd127d54](https://github.com/dylanaubrey/styled-snapshot/commit/dd127d54002a3fecaa91ecc23d1c92b06531f1ba))
+
 #### 0.1.4 (2019-09-25)
 
 ##### Bug Fixes
