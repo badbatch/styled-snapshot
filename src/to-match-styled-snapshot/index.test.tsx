@@ -5,8 +5,8 @@ import { ThemeProvider } from "styled-components";
 import toMatchStyledSnapshot from ".";
 import { SCComponent } from "../__test__/components";
 
-describe("toMatchStyledSnapshot", () => {
-  describe("when a React element is passed in", () => {
+describe("toMatchStyledSnapshot >>", () => {
+  describe("component >>", () => {
     const visitor = (node: ObjectMap) => {
       if (has(node, ["props", "theme"])) {
         node.props.theme = null;
@@ -14,6 +14,7 @@ describe("toMatchStyledSnapshot", () => {
     };
 
     toMatchStyledSnapshot(
+      "SCComponent",
       <ThemeProvider theme={{ type: "light" }}>
         <SCComponent />
       </ThemeProvider>,

@@ -1,6 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`toMatchStyledSnapshot when a React element is passed in nodejs 1`] = `
+exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.div 1`] = `
+"
+{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  position: relative;
+}
+"
+`;
+
+exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.li 1`] = `
+"
+{
+  margin-left: 12px;
+
+  position: absolute;
+  padding: null;
+  &:last-child {
+    margin-left: 0;
+  }
+}
+"
+`;
+
+exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.ul 1`] = `
+"
+{
+  margin: 0;
+  padding: 0;
+}
+"
+`;
+
+exports[`toMatchStyledSnapshot >> component >> SCComponent 1`] = `
 <styled.div>
   <ClassComponent />
   <FunctionComponent />
@@ -19,38 +53,4 @@ exports[`toMatchStyledSnapshot when a React element is passed in nodejs 1`] = `
     </styled.li>
   </styled.ul>
 </styled.div>
-`;
-
-exports[`toMatchStyledSnapshot when a React element is passed in nodejs styled.div 1`] = `
-"
-{
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
-  position: relative;
-}
-"
-`;
-
-exports[`toMatchStyledSnapshot when a React element is passed in nodejs styled.li 1`] = `
-"
-{
-  margin-left: 12px;
-
-  position: absolute;
-  padding: null;
-  &:last-child {
-    margin-left: 0;
-  }
-}
-"
-`;
-
-exports[`toMatchStyledSnapshot when a React element is passed in nodejs styled.ul 1`] = `
-"
-{
-  margin: 0;
-  padding: 0;
-}
-"
 `;
