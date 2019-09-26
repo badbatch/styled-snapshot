@@ -1,3 +1,9 @@
+#### 0.1.8 (2019-09-26)
+
+##### New Features
+
+*  add more logging and make it configurable ([2f10ee77](https://github.com/dylanaubrey/styled-snapshot/commit/2f10ee7707442cbb80d48cc97b1739de76aaa57d))
+
 #### 0.1.7 (2019-09-26)
 
 ##### New Features
