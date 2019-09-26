@@ -99,7 +99,8 @@ function unwrapNode(
 
   if (filtered.length > 1) {
     const message = `unwrap expected one element after filtering, but received ${filtered.length}`;
-    throw new Error(message);
+    console.error(message, filtered); // tslint:disable-line no-console
+    throw new Error();
   }
 
   const [singleNode] = filtered;
@@ -109,7 +110,8 @@ function unwrapNode(
 
   if (!isComponent && !toUnwrap && !hasDataAttr) {
     const message = `unwrap expected to receive a valid element, but received a ${String(typeOf(singleNode))}`;
-    throw new Error(message);
+    console.error(message, singleNode); // tslint:disable-line no-console
+    throw new Error();
   }
 
   let elementToUnwrap: string | undefined;
