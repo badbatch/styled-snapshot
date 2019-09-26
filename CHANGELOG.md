@@ -1,3 +1,9 @@
+#### 0.1.7 (2019-09-26)
+
+##### New Features
+
+*  add support for elementsToIgnore list ([75375cab](https://github.com/dylanaubrey/styled-snapshot/commit/75375cab98faeca9521e95036a59fee83a726a6f))
+
 #### 0.1.6 (2019-09-26)
 
 ##### New Features
