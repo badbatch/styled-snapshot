@@ -59,7 +59,9 @@ export interface PrivateContext {
   Provider: Provider<any>; // tslint:disable-line no-any
 }
 
-export type ValidElement = ComponentTypeElement | MandatoryUnwrapElement | DomElement;
+export type StyledComponentElement = ReactElement<PropsWithChildren<{}>, AnyStyledComponent>;
+
+export type ValidElement = ComponentTypeElement | StyledComponentElement | MandatoryUnwrapElement | DomElement;
 
 export type ReactTreeVisitor = (node: ObjectMap) => void;
 
@@ -95,7 +97,7 @@ export type ExtractedContexts = Map<React.ExoticComponent<React.ConsumerProps<an
 
 export interface UnwrapResult {
   contexts: ExtractedContexts;
-  element: ComponentTypeElement;
+  element: ComponentTypeElement | StyledComponentElement;
 }
 
 export interface SCSerializedTree {

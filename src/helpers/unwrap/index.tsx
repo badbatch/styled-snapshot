@@ -18,6 +18,7 @@ import {
   ForwardRefElement,
   FragmentElement,
   MemoElement,
+  StyledComponentElement,
   StyledSnapshotConfig,
   ValidElement,
 } from "../../types";
@@ -27,6 +28,7 @@ import hasUnwrapDataAttribute from "../has-unwrap-data-attribute";
 import isClassComponent from "../is-class-component";
 import isComponentType from "../is-component-type";
 import isMemoType from "../is-memo-type";
+import isStyledComponent from "../is-styled-component";
 import * as log from "../log";
 import toMandatoryUnwrap from "../to-mandatory-unwrap";
 
@@ -91,7 +93,7 @@ function getChildComponentTypeElement(element: ComponentType, props: PropsWithCh
   return childElement;
 }
 
-function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTypeElement {
+function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTypeElement | StyledComponentElement {
   const { elementsToIgnore, elementsToUnwrap = [], unwrapCustomizer } = config;
   const filtered = isArray(node) ? filterOutIgnoredElements(node, elementsToIgnore) : [node];
 
@@ -102,20 +104,21 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
 
   const [singleNode] = filtered;
   const isComponent = isComponentType(singleNode);
+  const isStyled = isStyledComponent(singleNode);
   const toUnwrap = toMandatoryUnwrap(singleNode);
   const hasDataAttr = hasUnwrapDataAttribute(singleNode);
 
-  if (!isComponent && !toUnwrap && !hasDataAttr) {
+  if (!isComponent && !isStyled && !toUnwrap && !hasDataAttr) {
     const message = `unwrap expected to receive a valid element, but received a ${String(typeOf(singleNode))}`;
     log.error(message, singleNode);
   }
 
   let elementToUnwrap: string | undefined;
 
-  if (isComponent && !toUnwrap && !hasDataAttr) {
-    const componentTypeElement = singleNode as ComponentTypeElement;
-    elementToUnwrap = elementsToUnwrap.find(name => getElementName(componentTypeElement) === name);
-    if (!elementToUnwrap) return componentTypeElement;
+  if ((isComponent || isStyled) && !toUnwrap && !hasDataAttr) {
+    const componentOrStyledElement = singleNode as ComponentTypeElement | StyledComponentElement;
+    elementToUnwrap = elementsToUnwrap.find(name => getElementName(componentOrStyledElement) === name);
+    if (!elementToUnwrap) return componentOrStyledElement;
   }
 
   log.info("element to unwrap", singleNode);

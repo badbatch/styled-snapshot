@@ -8,6 +8,7 @@ import {
   MemoComponent,
   portal,
 } from "../../__test__/components";
+import { StyledDiv } from "../../__test__/styled";
 
 describe("toMandatoryUnwrap", () => {
   describe("invalid elements", () => {
@@ -38,6 +39,12 @@ describe("toMandatoryUnwrap", () => {
     describe("when a Functional component is passed in", () => {
       it("should return false", () => {
         expect(toMandatoryUnwrap(<FunctionComponent />)).toBe(false);
+      });
+    });
+
+    describe("when a Styled Component is passed in", () => {
+      it("should return false", () => {
+        expect(toMandatoryUnwrap(<StyledDiv />)).toBe(false);
       });
     });
   });

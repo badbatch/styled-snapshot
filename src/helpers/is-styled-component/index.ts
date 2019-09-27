@@ -1,7 +1,8 @@
-import { get, isString } from "lodash";
-import { ComponentType } from "react";
+import { get, isObject } from "lodash";
+import { ReactNode } from "react";
 
-export default function isStyledComponent(component: string | ComponentType) {
-  if (!component || isString(component)) return false;
-  return !!get(component, ["styledComponentId"], false);
+export default function isStyledComponent(node: ReactNode) {
+  if (!isObject(node)) return false;
+
+  return !!get(node, ["styledComponentId"]) || !!get(node, ["type", "styledComponentId"]);
 }

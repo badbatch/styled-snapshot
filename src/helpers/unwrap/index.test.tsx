@@ -51,8 +51,8 @@ describe("unwrap", () => {
 
     describe("when a FunctionalComponent element is passed in", () => {
       it("should return the unwrapped element", () => {
-        const result = unwrap(<ContextProviderComponent />, { elementsToUnwrap: ["ContextProviderComponent"] });
-        expect(getElementName(result.element)).toBe("ClassComponent");
+        const result = unwrap(<FunctionComponent />, { elementsToUnwrap: ["FunctionComponent"] });
+        expect(getElementName(result.element)).toBe("styled.div");
       });
     });
 

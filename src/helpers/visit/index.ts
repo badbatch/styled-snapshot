@@ -83,7 +83,7 @@ function visitElement(element: ReactElement, config: StyledSnapshotConfig) {
   if (isFunction(reactTreeVisitor)) reactTreeVisitor(nodeClone);
   let _element = element;
 
-  if (isStyledComponent(element.type)) {
+  if (isStyledComponent(element)) {
     const styledElement = element as SCForwardRefElement;
     _element = { ...element, type: styledElement.type.displayName };
   }
