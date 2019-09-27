@@ -1,3 +1,9 @@
+#### 0.1.9 (2019-09-27)
+
+##### Bug Fixes
+
+*  stop unwrapping styled components unless have data attr ([837fc59f](https://github.com/dylanaubrey/styled-snapshot/commit/837fc59fbb00e4d2677d4e8e0c2d96ef70c6bd06))
+
 #### 0.1.8 (2019-09-26)
 
 ##### New Features
