@@ -1,3 +1,9 @@
+#### 0.1.10 (2019-10-01)
+
+##### Bug Fixes
+
+*  add unwrap case for styled components to get children ([03a864a2](https://github.com/dylanaubrey/styled-snapshot/commit/03a864a2b8775bad24e92ea6260d3fe1c274b6ab))
+
 #### 0.1.9 (2019-09-27)
 
 ##### Bug Fixes
