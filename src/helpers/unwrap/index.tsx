@@ -38,9 +38,13 @@ function getChildren(element: ValidElement): ValidElement | ReactNode {
   let children: ValidElement | ReactNode;
 
   switch (true) {
+    case isStyledComponent(element):
+      const styledComponentElement = element as StyledComponentElement;
+      children = styledComponentElement.props.children;
+      break;
     case isComponentType(element):
       const componentTypeElement = element as ComponentTypeElement;
-      children = getChildComponentTypeElement(componentTypeElement.type, componentTypeElement.props);
+      children = getComponentTypeElementChild(componentTypeElement.type, componentTypeElement.props);
       break;
     case isMemoType(element):
       const memoElement = element as MemoElement;
@@ -79,7 +83,7 @@ function getChildren(element: ValidElement): ValidElement | ReactNode {
   return children;
 }
 
-function getChildComponentTypeElement(element: ComponentType, props: PropsWithChildren<{}>) {
+function getComponentTypeElementChild(element: ComponentType, props: PropsWithChildren<{}>) {
   let childElement: ValidElement | ReactNode;
 
   if (isClassComponent(element)) {
@@ -95,11 +99,19 @@ function getChildComponentTypeElement(element: ComponentType, props: PropsWithCh
 
 function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTypeElement | StyledComponentElement {
   const { elementsToIgnore, elementsToUnwrap = [], unwrapCustomizer } = config;
+
+  if (!node) {
+    const message = `unwrap expected to receive an element, but received ${String(node)}`;
+    log.error(message, node);
+    throw new Error();
+  }
+
   const filtered = isArray(node) ? filterOutIgnoredElements(node, elementsToIgnore) : [node];
 
   if (filtered.length > 1) {
     const message = `unwrap expected one element after filtering, but received ${filtered.length}`;
     log.error(message, filtered);
+    throw new Error();
   }
 
   const [singleNode] = filtered;
@@ -111,6 +123,7 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
   if (!isComponent && !isStyled && !toUnwrap && !hasDataAttr) {
     const message = `unwrap expected to receive a valid element, but received a ${String(typeOf(singleNode))}`;
     log.error(message, singleNode);
+    throw new Error();
   }
 
   let elementToUnwrap: string | undefined;
@@ -126,7 +139,7 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
   return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement), config);
 }
 
-export default function unwrap(node: ReactNode, config: StyledSnapshotConfig) {
+export default function unwrap(node: ReactNode, config: StyledSnapshotConfig = {}) {
   contexts = new Map();
 
   return {
