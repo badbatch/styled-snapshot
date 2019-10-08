@@ -1,3 +1,9 @@
+#### 0.1.11 (2019-10-08)
+
+##### Bug Fixes
+
+*  deal with styled components separately ([b2b5599e](https://github.com/dylanaubrey/styled-snapshot/commit/b2b5599eac8fdc9bd28d71dfefd80e75ab55cff5))
+
 #### 0.1.10 (2019-10-01)
 
 ##### Bug Fixes
