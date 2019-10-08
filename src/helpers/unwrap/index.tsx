@@ -1,4 +1,4 @@
-import { isFunction, isString } from "lodash";
+import { isArray, isFunction, isString } from "lodash";
 import React, {
   ComponentClass,
   ComponentType,
@@ -9,7 +9,6 @@ import React, {
   ReactPortal,
 } from "react";
 import { ContextConsumer, ContextProvider, Element, ForwardRef, Fragment, Portal, typeOf } from "react-is";
-import { isArray } from "util";
 import {
   ComponentTypeElement,
   ContextConsumerElement,

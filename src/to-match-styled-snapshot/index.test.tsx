@@ -3,10 +3,10 @@ import { has } from "lodash";
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import toMatchStyledSnapshot from ".";
-import { SCComponent } from "../__test__/components";
+import { SCComponent, SerializeComponent } from "../__test__/components";
 
 describe("toMatchStyledSnapshot >>", () => {
-  describe("component >>", () => {
+  describe("SCComponent >>", () => {
     const visitor = (node: ObjectMap) => {
       if (has(node, ["props", "theme"])) {
         node.props.theme = null;
@@ -14,7 +14,7 @@ describe("toMatchStyledSnapshot >>", () => {
     };
 
     toMatchStyledSnapshot(
-      "SCComponent",
+      "component",
       <ThemeProvider theme={{ type: "light" }}>
         <SCComponent />
       </ThemeProvider>,
@@ -23,5 +23,17 @@ describe("toMatchStyledSnapshot >>", () => {
         reactTreeVisitor: visitor,
       },
     );
+  });
+
+  describe("SerializeComponent >>", () => {
+    const visitor = (node: ObjectMap) => {
+      if (has(node, ["props", "theme"])) {
+        node.props.theme = null;
+      }
+    };
+
+    toMatchStyledSnapshot("component", <SerializeComponent />, {
+      reactTreeVisitor: visitor,
+    });
   });
 });

@@ -1,7 +1,7 @@
 import { ObjectMap } from "@repodog/types";
+import { isString } from "lodash";
 import { ReactElement, createElement } from "react";
 import { isForwardRef } from "react-is";
-import { isString } from "util";
 import { ComponentTypeElement, ForwardRefElement } from "../../types";
 import getElementName from "../get-element-name";
 import isComponentType from "../is-component-type";

@@ -17,7 +17,11 @@ exports[`visit when a visitor is passed in to remove certain data should return 
   forwardRef={<ForwardRef />}
   fragment={<React.Fragment />}
   memo={<Memo(MemoComponent) />}
-  portal={<Portal(ClassComponent) />}
+  portal={
+    <Portal(ClassComponent)>
+      <FunctionComponent />
+    </Portal(ClassComponent)>
+  }
   provider={
     <Context.Provider
       value=""
@@ -25,6 +29,7 @@ exports[`visit when a visitor is passed in to remove certain data should return 
   }
   renderProp={
     <RenderProp(FunctionComponent)
+      renderProp={<RenderProp(div) />}
       theme={null}
     />
   }
@@ -51,13 +56,21 @@ exports[`visit when run over a serialized component tree should return the corre
   forwardRef={<ForwardRef />}
   fragment={<React.Fragment />}
   memo={<Memo(MemoComponent) />}
-  portal={<Portal(ClassComponent) />}
+  portal={
+    <Portal(ClassComponent)>
+      <FunctionComponent />
+    </Portal(ClassComponent)>
+  }
   provider={
     <Context.Provider
       value=""
     />
   }
-  renderProp={<RenderProp(FunctionComponent) />}
+  renderProp={
+    <RenderProp(FunctionComponent)
+      renderProp={<RenderProp(div) />}
+    />
+  }
   styled={Symbol(styled.div)}
 >
   <ForwardRef />

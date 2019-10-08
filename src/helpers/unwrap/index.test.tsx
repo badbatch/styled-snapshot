@@ -18,7 +18,13 @@ describe("unwrap", () => {
   describe("element types to unwrap", () => {
     describe("when a ClassComponent element is passed in", () => {
       it("should return the correct unwrapped element", () => {
-        const result = unwrap(<ClassComponent />, { elementsToUnwrap: ["ClassComponent"] });
+        const result = unwrap(
+          <ClassComponent>
+            <FunctionComponent />
+          </ClassComponent>,
+          { elementsToUnwrap: ["ClassComponent"] },
+        );
+
         expect(getElementName(result.element)).toBe("FunctionComponent");
       });
     });
@@ -26,13 +32,16 @@ describe("unwrap", () => {
     describe("when a ContextComponent element is passed in", () => {
       let result: UnwrapResult;
 
-      it("should return the correct unwrapped element", () => {
+      beforeAll(() => {
         result = unwrap(<ContextComponent />, { elementsToUnwrap: ["ContextComponent", "ContextConsumerComponent"] });
+      });
+
+      it("should return the correct unwrapped element", () => {
         expect(getElementName(result.element)).toBe("ClassComponent");
       });
 
       it("should have the theme in the element props", () => {
-        expect(result.element.props).toEqual({ value: "dark" });
+        expect(result.element.props).toMatchObject({ value: "dark" });
       });
     });
 
@@ -105,7 +114,9 @@ describe("unwrap", () => {
       it("should return the correct unwrapped element", () => {
         const result = unwrap(
           <div data-styled-unwrap>
-            <ClassComponent data-styled-unwrap />
+            <ClassComponent data-styled-unwrap>
+              <FunctionComponent />
+            </ClassComponent>
           </div>,
         );
 

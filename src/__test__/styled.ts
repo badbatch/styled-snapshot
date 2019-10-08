@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { ComponentProps } from "./types";
 
-export const StyledDiv = styled.div`
+export const StyledDiv = styled.div<ComponentProps>`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;

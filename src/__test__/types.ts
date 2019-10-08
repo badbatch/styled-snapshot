@@ -14,7 +14,7 @@ export interface ComponentProps {
   memo?: MemoElement;
   portal?: ReactPortal;
   provider?: ContextProviderElement;
-  renderProp?: () => ReactElement;
+  renderProp?: (...args: any[]) => ReactElement;
   styled?: ComponentType<{}>;
   value?: string;
 }

@@ -1,8 +1,7 @@
 import { Func, ObjectMap } from "@repodog/types";
-import { castArray, isFunction, isPlainObject } from "lodash";
+import { castArray, isFunction, isPlainObject, isUndefined } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { ForwardRef, isElement, isPortal } from "react-is";
-import { isArray } from "util";
 import { PORTAL, RENDER_PROP } from "../../constants";
 import { SCForwardRefElement, SerializedTree, StyledSnapshotConfig, TreeNode } from "../../types";
 import createSnapshotElement from "../create-snapshot-element";
@@ -16,7 +15,7 @@ export default function visit(serializedComponent: SerializedTree, config: Style
 }
 
 function visitChildren(children: ReactElement | ReactElement[], config: StyledSnapshotConfig) {
-  return castArray(children).map(child => visitElement(child, config));
+  return castArray(children).map(child => (isElement(child) ? visitElement(child, config) : child));
 }
 
 function visitFunctionProp(val: Func | FunctionComponent, config: StyledSnapshotConfig) {
@@ -69,7 +68,7 @@ function visitProps(props: ObjectMap, config: StyledSnapshotConfig) {
       case isPlainObject(val) && val.$$typeof === ForwardRef:
         props[key] = Symbol(getComponentName(val));
         break;
-      case isArray(val):
+      case key === "children" && !isUndefined(val):
         props[key] = visitChildren(props.children, config);
         break;
       // no default

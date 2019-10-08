@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.div 1`] = `
+exports[`toMatchStyledSnapshot >> SCComponent >> component >> styled.div 1`] = `
 "
 {
   -webkit-font-smoothing: antialiased;
@@ -11,7 +11,7 @@ exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.div 1`] = `
 "
 `;
 
-exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.li 1`] = `
+exports[`toMatchStyledSnapshot >> SCComponent >> component >> styled.li 1`] = `
 "
 {
   margin-left: 12px;
@@ -25,7 +25,7 @@ exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.li 1`] = `
 "
 `;
 
-exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.ul 1`] = `
+exports[`toMatchStyledSnapshot >> SCComponent >> component >> styled.ul 1`] = `
 "
 {
   margin: 0;
@@ -34,9 +34,11 @@ exports[`toMatchStyledSnapshot >> component >> SCComponent >> styled.ul 1`] = `
 "
 `;
 
-exports[`toMatchStyledSnapshot >> component >> SCComponent 1`] = `
+exports[`toMatchStyledSnapshot >> SCComponent >> component 1`] = `
 <styled.div>
-  <ClassComponent />
+  <ClassComponent>
+    <FunctionComponent />
+  </ClassComponent>
   <FunctionComponent />
   <styled.ul>
     <styled.li>
@@ -53,4 +55,40 @@ exports[`toMatchStyledSnapshot >> component >> SCComponent 1`] = `
     </styled.li>
   </styled.ul>
 </styled.div>
+`;
+
+exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
+<ClassComponent
+  Component={Symbol(FunctionComponent)}
+  callback={[Function]}
+  consumer={
+    <Context.Consumer>
+      <RenderProp(div) />
+    </Context.Consumer>
+  }
+  element={<FunctionComponent />}
+  forwardRef={<ForwardRef />}
+  fragment={<React.Fragment />}
+  memo={<Memo(MemoComponent) />}
+  portal={
+    <Portal(ClassComponent)>
+      <FunctionComponent />
+    </Portal(ClassComponent)>
+  }
+  provider={
+    <Context.Provider
+      value=""
+    />
+  }
+  renderProp={
+    <RenderProp(FunctionComponent)
+      renderProp={<RenderProp(div) />}
+    />
+  }
+  styled={Symbol(styled.div)}
+>
+  <ForwardRef />
+  <FunctionComponent />
+  <Memo(MemoComponent) />
+</ClassComponent>
 `;
