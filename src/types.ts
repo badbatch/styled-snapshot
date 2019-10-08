@@ -21,11 +21,13 @@ import {
 } from "react";
 import { AnyStyledComponent } from "styled-components";
 
+export type AnyConsumer = Consumer<any>; // tslint:disable-line no-any
+
 export type ComponentTypeElement =
   | ReactElement<PropsWithChildren<{}>, ComponentClass>
   | ReactElement<PropsWithChildren<{}>, FunctionComponent>;
 
-export type ContextConsumerElement = ReactElement<ConsumerProps<any>, Consumer<any>>; // tslint:disable-line no-any
+export type ContextConsumerElement = ReactElement<ConsumerProps<any>, AnyConsumer>; // tslint:disable-line no-any
 
 // tslint:disable-next-line no-any
 export type ContextProviderElement = ReactElement<ProviderProps<any>, Provider<any> & { _context: PrivateContext }>;
@@ -55,7 +57,7 @@ export type MandatoryUnwrapElement =
 export type MemoElement = ReactElement<PropsWithChildren<{}>, MemoExoticComponent<ComponentType>>;
 
 export interface PrivateContext {
-  Consumer: Consumer<any>; // tslint:disable-line no-any
+  Consumer: AnyConsumer; // tslint:disable-line no-any
   Provider: Provider<any>; // tslint:disable-line no-any
 }
 
@@ -66,6 +68,7 @@ export type ValidElement = ComponentTypeElement | StyledComponentElement | Manda
 export type ReactTreeVisitor = (node: ObjectMap) => void;
 
 export interface StyledSnapshotConfig {
+  contextKeySetter?: (consumer: AnyConsumer) => string | undefined; // tslint:disable-line no-any
   elementsToIgnore?: string[];
   elementsToUnwrap?: string[];
   logLevel?: "error" | "warn" | "info";
@@ -93,7 +96,7 @@ export interface SerializedTree {
 
 export type TreeNode = SerializedTree;
 
-export type ExtractedContexts = Map<React.ExoticComponent<React.ConsumerProps<any>>, ObjectMap>; // tslint:disable-line no-any
+export type ExtractedContexts = Map<React.ExoticComponent<React.ConsumerProps<any>>, [string, any]>; // tslint:disable-line no-any
 
 export interface UnwrapResult {
   contexts: ExtractedContexts;

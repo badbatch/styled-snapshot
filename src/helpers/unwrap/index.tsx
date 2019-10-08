@@ -2,7 +2,6 @@ import { isArray, isFunction, isString } from "lodash";
 import React, {
   ComponentClass,
   ComponentType,
-  Consumer,
   FunctionComponent,
   PropsWithChildren,
   ReactNode,
@@ -14,6 +13,7 @@ import {
   ContextConsumerElement,
   ContextProviderElement,
   DomElement,
+  ExtractedContexts,
   ForwardRefElement,
   FragmentElement,
   MemoElement,
@@ -21,8 +21,10 @@ import {
   StyledSnapshotConfig,
   ValidElement,
 } from "../../types";
+import extractContextValue from "../extract-context-value";
 import filterOutIgnoredElements from "../filter-out-ignored-elements";
 import getElementName from "../get-element-name";
+import getExtractedContextValue from "../get-extracted-context-value";
 import hasUnwrapDataAttribute from "../has-unwrap-data-attribute";
 import isClassComponent from "../is-class-component";
 import isComponentType from "../is-component-type";
@@ -31,9 +33,9 @@ import isStyledComponent from "../is-styled-component";
 import * as log from "../log";
 import toMandatoryUnwrap from "../to-mandatory-unwrap";
 
-let contexts: Map<Consumer<any>, any>; // tslint:disable-line no-any
+let contexts: ExtractedContexts;
 
-function getChildren(element: ValidElement): ValidElement | ReactNode {
+function getChildren(element: ValidElement, config: StyledSnapshotConfig): ValidElement | ReactNode {
   let children: ValidElement | ReactNode;
 
   switch (true) {
@@ -52,12 +54,18 @@ function getChildren(element: ValidElement): ValidElement | ReactNode {
       break;
     case typeOf(element) === ContextConsumer:
       const contextConsumerElement = element as ContextConsumerElement;
-      const value = contexts.get(contextConsumerElement.type);
-      children = contextConsumerElement.props.children(value);
+      children = contextConsumerElement.props.children(getExtractedContextValue(contexts, contextConsumerElement.type));
       break;
     case typeOf(element) === ContextProvider:
       const contextProviderElement = element as ContextProviderElement;
-      contexts.set(contextProviderElement.type._context.Consumer, contextProviderElement.props.value);
+
+      extractContextValue(
+        contexts,
+        contextProviderElement.type._context.Consumer,
+        contextProviderElement.props.value,
+        config,
+      );
+
       children = contextProviderElement.props.children;
       break;
     case typeOf(element) === ForwardRef:
@@ -133,9 +141,9 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
     if (!elementToUnwrap) return componentOrStyledElement;
   }
 
-  log.info("element to unwrap", singleNode);
+  log.info("element to unwrap:", singleNode);
 
-  return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement), config);
+  return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement, config), config);
 }
 
 export default function unwrap(node: ReactNode, config: StyledSnapshotConfig = {}) {

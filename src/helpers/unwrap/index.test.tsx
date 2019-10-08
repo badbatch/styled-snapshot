@@ -1,4 +1,5 @@
 import React from "react";
+import { ThemeConsumer } from "styled-components";
 import unwrap from ".";
 import {
   ClassComponent,
@@ -85,6 +86,7 @@ describe("unwrap", () => {
 
       beforeAll(() => {
         result = unwrap(<SCContextComponent />, {
+          contextKeySetter: consumer => (consumer === ThemeConsumer ? "theme" : undefined),
           elementsToUnwrap: ["SCContextComponent", "ThemeProvider", "WithThemeClassComponent"],
         });
       });

@@ -23,11 +23,11 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
   }
 
   log.setLevel(options);
-  log.info("element passed to generateStyledSnapshot", element);
+  log.info("element passed to generateStyledSnapshot:", element);
 
   const { contexts, element: unwrappedElement } = unwrap(element, config);
 
-  log.info("unwrapped element", unwrappedElement);
+  log.info("unwrapped element:", unwrappedElement);
 
   const componentTree = shallow(unwrappedElement);
   let serializedTree: Json | SerializedTree = toJson(componentTree);
@@ -50,7 +50,7 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     uniqueStyles.set(id, [displayName, formatted]);
   });
 
-  log.info("serialized element", serializedTree);
+  log.info("serialized element:", serializedTree);
 
   return { component: serializedTree, styles: uniqueStyles };
 }
