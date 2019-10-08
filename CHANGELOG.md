@@ -1,3 +1,9 @@
+#### 0.1.12 (2019-10-08)
+
+##### Bug Fixes
+
+*  merge context values and then spread ([c5045548](https://github.com/dylanaubrey/styled-snapshot/commit/c50455488b3329067feb5f670f6033517218ae39))
+
 #### 0.1.11 (2019-10-08)
 
 ##### Bug Fixes
