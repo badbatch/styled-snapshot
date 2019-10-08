@@ -1,3 +1,9 @@
+#### 0.1.13 (2019-10-08)
+
+##### New Features
+
+*  add contextKeySetter to set keys for extracted contexts ([c7423284](https://github.com/dylanaubrey/styled-snapshot/commit/c74232849de396ebd818bbf98b932d7a660ab6f3))
+
 #### 0.1.12 (2019-10-08)
 
 ##### Bug Fixes
