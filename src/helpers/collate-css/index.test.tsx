@@ -5,7 +5,7 @@ import collateCSS from ".";
 import { StyledItem } from "../../__test__/styled";
 
 describe("collateCSS", () => {
-  describe("when theme is passed in as true", () => {
+  describe.only("when theme is passed in as true", () => {
     it("should return the correct structure", () => {
       const componentTree = shallow(<StyledItem />);
       const serializedTree = toJson(componentTree);

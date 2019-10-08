@@ -7,6 +7,7 @@ import getStyledComponents from "../helpers/get-styled-components";
 import getStyledDisplayName from "../helpers/get-styled-display-name";
 import loadConfig from "../helpers/load-config";
 import * as log from "../helpers/log";
+import mergeExtractedContexts from "../helpers/merge-extracted-contexts";
 import toCollateCSS from "../helpers/to-collate-css";
 import unwrap from "../helpers/unwrap";
 import visit from "../helpers/visit";
@@ -41,7 +42,7 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     const serializedStyledTree = toJson(wrapper.dive());
     if (!toCollateCSS(serializedStyledTree) || !("node" in serializedStyledTree)) return;
 
-    const { formatted, unformatted } = collateCSS(serializedStyledTree, contexts);
+    const { formatted, unformatted } = collateCSS(serializedStyledTree, mergeExtractedContexts(contexts));
     const displayName = getStyledDisplayName(serializedStyledTree);
     const id = createCSSHash(displayName, unformatted);
     if (uniqueStyles.has(id)) return;
