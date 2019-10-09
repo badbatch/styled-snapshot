@@ -1,5 +1,5 @@
 import { Func, ObjectMap } from "@repodog/types";
-import { castArray, isFunction, isObject, isPlainObject, isUndefined } from "lodash";
+import { castArray, isFunction, isPlainObject, isUndefined } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { ForwardRef, isElement, isForwardRef, isPortal } from "react-is";
 import { PORTAL, RENDER_PROP } from "../../constants";
@@ -30,11 +30,6 @@ function visitElement(element: ReactElement, config: StyledSnapshotConfig) {
   }
 
   visitProps(nodeClone.props, config);
-
-  if (isObject(_element.type)) {
-    Reflect.deleteProperty(_element.type, "propTypes");
-  }
-
   return cloneElement(_element, nodeClone.props);
 }
 

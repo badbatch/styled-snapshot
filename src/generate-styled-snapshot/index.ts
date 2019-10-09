@@ -8,6 +8,7 @@ import getStyledDisplayName from "../helpers/get-styled-display-name";
 import loadConfig from "../helpers/load-config";
 import * as log from "../helpers/log";
 import mergeExtractedContexts from "../helpers/merge-extracted-contexts";
+import { disablePropTypeWarnings, enablePropTypeWarnings } from "../helpers/prop-type-warnings";
 import toCollateCSS from "../helpers/to-collate-css";
 import unwrap from "../helpers/unwrap";
 import visit from "../helpers/visit";
@@ -22,6 +23,7 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     config = options;
   }
 
+  disablePropTypeWarnings();
   log.setLevel(options);
   log.info("element passed to generateStyledSnapshot:", element);
 
@@ -53,6 +55,6 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
   });
 
   log.info("serialized element:", serializedTree);
-
+  enablePropTypeWarnings();
   return { component: serializedTree, styles: uniqueStyles };
 }

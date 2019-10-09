@@ -1,19 +1,21 @@
+/* tslint:disable no-console */
+
 import { ERROR, INFO, WARN } from "../../constants";
 import { StyledSnapshotConfig } from "../../types";
 
 export function error(message: string, ...optionalParams: any[]) {
   if (getLevel() < 1) return;
-  console.error(message, ...optionalParams); // tslint:disable-line no-console
+  console.error(message, ...optionalParams);
 }
 
 export function warn(message: string, ...optionalParams: any[]) {
   if (getLevel() < 2) return;
-  console.warn(message, ...optionalParams); // tslint:disable-line no-console
+  console.warn(message, ...optionalParams);
 }
 
 export function info(message: string, ...optionalParams: any[]) {
   if (getLevel() < 3) return;
-  console.log(message, ...optionalParams); // tslint:disable-line no-console
+  console.log(message, ...optionalParams);
 }
 
 export function getLevel() {
