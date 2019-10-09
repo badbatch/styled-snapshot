@@ -23,7 +23,6 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     config = options;
   }
 
-  disablePropTypeWarnings();
   log.setLevel(options);
   log.info("element passed to generateStyledSnapshot:", element);
 
@@ -33,6 +32,7 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
 
   const componentTree = shallow(unwrappedElement);
   let serializedTree: Json | SerializedTree = toJson(componentTree);
+  disablePropTypeWarnings();
 
   if ("node" in serializedTree) {
     serializedTree = visit(serializedTree, config);
