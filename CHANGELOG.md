@@ -1,3 +1,13 @@
+#### 0.1.16 (2019-10-09)
+
+##### New Features
+
+*  disable prop type warnings ([89371708](https://github.com/dylanaubrey/styled-snapshot/commit/89371708828415d599ca5ceb5eb7008b79de36cc))
+
+##### Bug Fixes
+
+*  move disable prop types function call ([da4be3f4](https://github.com/dylanaubrey/styled-snapshot/commit/da4be3f4f2d1dd33819771280d7c7196fb56b2c7))
+
 #### 0.1.15 (2019-10-09)
 
 ##### Bug Fixes
