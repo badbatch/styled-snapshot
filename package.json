@@ -1,6 +1,6 @@
 {
   "name": "styled-snapshot",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "A utility for taking Jest snapshots of components that use Styled Components.",
   "keywords": [
     "jest",

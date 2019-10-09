@@ -1,3 +1,9 @@
+#### 0.1.15 (2019-10-09)
+
+##### Bug Fixes
+
+*  check collated css length before writing snapshot ([c8c96fd3](https://github.com/dylanaubrey/styled-snapshot/commit/c8c96fd36de27ed237fc11785531b0d413091d9e))
+
 #### 0.1.14 (2019-10-09)
 
 ##### Bug Fixes
