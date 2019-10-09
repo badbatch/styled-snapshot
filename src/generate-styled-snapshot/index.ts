@@ -43,6 +43,8 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     if (!toCollateCSS(serializedStyledTree) || !("node" in serializedStyledTree)) return;
 
     const { formatted, unformatted } = collateCSS(serializedStyledTree, mergeExtractedContexts(contexts));
+    if (!unformatted) return;
+
     const displayName = getStyledDisplayName(serializedStyledTree);
     const id = createCSSHash(displayName, unformatted);
     if (uniqueStyles.has(id)) return;

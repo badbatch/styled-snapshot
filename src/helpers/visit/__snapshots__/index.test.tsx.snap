@@ -35,12 +35,15 @@ exports[`visit when a visitor is passed in to remove certain data should return 
     />
   }
   styled={Symbol(styled.div)}
+  styledFunctionComponent={<Styled(FunctionComponent) />}
+  styledStyledComponent={<Styled(styled.div) />}
 >
   <ForwardRefComponent />
   <FunctionComponent
     theme={null}
   />
   <Memo(MemoComponent) />
+  <Styled(FunctionComponent) />
 </ClassComponent>
 `;
 
@@ -74,9 +77,12 @@ exports[`visit when run over a serialized component tree should return the corre
     />
   }
   styled={Symbol(styled.div)}
+  styledFunctionComponent={<Styled(FunctionComponent) />}
+  styledStyledComponent={<Styled(styled.div) />}
 >
   <ForwardRefComponent />
   <FunctionComponent />
   <Memo(MemoComponent) />
+  <Styled(FunctionComponent) />
 </ClassComponent>
 `;

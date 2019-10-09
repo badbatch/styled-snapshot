@@ -87,9 +87,12 @@ exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
     />
   }
   styled={Symbol(styled.div)}
+  styledFunctionComponent={<Styled(FunctionComponent) />}
+  styledStyledComponent={<Styled(styled.div) />}
 >
   <ForwardRefComponent />
   <FunctionComponent />
   <Memo(MemoComponent) />
+  <Styled(FunctionComponent) />
 </ClassComponent>
 `;

@@ -2,7 +2,7 @@ import { ObjectMap } from "@repodog/types";
 import PropTypes from "prop-types";
 import React, { Component, ComponentType, forwardRef, memo } from "react";
 import { createPortal } from "react-dom";
-import { ThemeContext, ThemeProvider, withTheme } from "styled-components";
+import styled, { ThemeContext, ThemeProvider, withTheme } from "styled-components";
 import { StyledDiv, StyledItem, StyledList } from "./styled";
 import { ComponentProps } from "./types";
 
@@ -119,12 +119,19 @@ export const SerializeComponent = (props: ObjectMap = {}) => {
       provider={<ThemeContext.Provider value="" />}
       renderProp={() => <FunctionComponent {...props} renderProp={subProps => <div {...subProps} />} />}
       styled={StyledDiv}
+      styledFunctionComponent={<StyledFunctionComponent />}
+      styledStyledComponent={<StyledStyledComponent />}
     >
       <ForwardRefComponent />
       <FunctionComponent {...props} />
       <MemoComponent />
+      <StyledFunctionComponent />
     </ClassComponent>
   );
 };
 
 SerializeComponent.displayName = "SerializeComponent";
+
+export const StyledFunctionComponent = styled(FunctionComponent)``;
+
+export const StyledStyledComponent = styled(StyledDiv)``;

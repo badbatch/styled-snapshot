@@ -17,5 +17,7 @@ export interface ComponentProps {
   provider?: ContextProviderElement;
   renderProp?: (...args: any[]) => ReactElement;
   styled?: ComponentType<{}>;
+  styledFunctionComponent?: ReactElement;
+  styledStyledComponent?: ReactElement;
   value?: string;
 }
