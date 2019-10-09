@@ -1,3 +1,9 @@
+#### 0.1.14 (2019-10-09)
+
+##### Bug Fixes
+
+*  correcting visit logic to deal with edge cases ([5bae79fa](https://github.com/dylanaubrey/styled-snapshot/commit/5bae79fa0a3d195f663577792370494253c5e9e6))
+
 #### 0.1.13 (2019-10-08)
 
 ##### New Features
