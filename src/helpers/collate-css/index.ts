@@ -35,7 +35,7 @@ function collateRules(rules: SCComponentStyle["rules"], props: ObjectMap) {
 export default function collateCSS(serializedTree: SCSerializedTree, contexts: ObjectMap = {}) {
   const { forwardedComponent, ...otherProps } = serializedTree.props;
   const { componentStyle } = forwardedComponent;
-  const unformatted = collateRules(componentStyle.rules, { ...otherProps, ...contexts });
+  const unformatted = collateRules(componentStyle.rules, { ...otherProps, ...contexts }).trim();
 
   return {
     formatted: `\n${format(`{${unformatted}}`, { parser: "css" }).trim()}\n`,
