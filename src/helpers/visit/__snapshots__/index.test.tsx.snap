@@ -9,12 +9,13 @@ exports[`visit when a visitor is passed in to remove certain data should return 
       <RenderProp(div) />
     </Context.Consumer>
   }
+  decorator={<WithTheme(ClassComponent) />}
   element={
     <FunctionComponent
       theme={null}
     />
   }
-  forwardRef={<ForwardRef />}
+  forwardRef={<ForwardRefComponent />}
   fragment={<React.Fragment />}
   memo={<Memo(MemoComponent) />}
   portal={
@@ -35,7 +36,7 @@ exports[`visit when a visitor is passed in to remove certain data should return 
   }
   styled={Symbol(styled.div)}
 >
-  <ForwardRef />
+  <ForwardRefComponent />
   <FunctionComponent
     theme={null}
   />
@@ -52,8 +53,9 @@ exports[`visit when run over a serialized component tree should return the corre
       <RenderProp(div) />
     </Context.Consumer>
   }
+  decorator={<WithTheme(ClassComponent) />}
   element={<FunctionComponent />}
-  forwardRef={<ForwardRef />}
+  forwardRef={<ForwardRefComponent />}
   fragment={<React.Fragment />}
   memo={<Memo(MemoComponent) />}
   portal={
@@ -73,7 +75,7 @@ exports[`visit when run over a serialized component tree should return the corre
   }
   styled={Symbol(styled.div)}
 >
-  <ForwardRef />
+  <ForwardRefComponent />
   <FunctionComponent />
   <Memo(MemoComponent) />
 </ClassComponent>

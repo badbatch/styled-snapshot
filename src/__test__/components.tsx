@@ -1,4 +1,5 @@
 import { ObjectMap } from "@repodog/types";
+import PropTypes from "prop-types";
 import React, { Component, ComponentType, forwardRef, memo } from "react";
 import { createPortal } from "react-dom";
 import { ThemeContext, ThemeProvider, withTheme } from "styled-components";
@@ -7,6 +8,10 @@ import { ComponentProps } from "./types";
 
 export class ClassComponent extends Component<ComponentProps> {
   public static displayName = "ClassComponent";
+
+  public static propTypes = {
+    Component: PropTypes.elementType,
+  };
 
   // tslint:disable-next-line prefer-function-over-method
   public render() {
@@ -55,6 +60,10 @@ ForwardRefComponent.displayName = "ForwardRefComponent";
 export const FunctionComponent = (props: ComponentProps) => <StyledDiv {...props} />;
 FunctionComponent.displayName = "FunctionComponent";
 
+FunctionComponent.propTypes = {
+  Component: PropTypes.elementType,
+};
+
 export const MemoComponent = memo(FunctionComponent);
 MemoComponent.displayName = "MemoComponent";
 
@@ -94,7 +103,6 @@ export const SCContextComponent = () => (
 SCContextComponent.displayName = "SCContextComponent";
 
 export const WithThemeClassComponent = withTheme<ComponentType<any>>(ClassComponent); // tslint:disable-line no-any
-WithThemeClassComponent.displayName = "WithThemeClassComponent";
 
 export const SerializeComponent = (props: ObjectMap = {}) => {
   return (
@@ -102,6 +110,7 @@ export const SerializeComponent = (props: ObjectMap = {}) => {
       Component={FunctionComponent}
       callback={() => null}
       consumer={<ThemeContext.Consumer>{() => <div />}</ThemeContext.Consumer>}
+      decorator={<WithThemeClassComponent />}
       element={<FunctionComponent {...props} />}
       forwardRef={<ForwardRefComponent />}
       fragment={<></>}

@@ -7,7 +7,7 @@ import React, {
   ReactNode,
   ReactPortal,
 } from "react";
-import { ContextConsumer, ContextProvider, Element, ForwardRef, Fragment, Portal, typeOf } from "react-is";
+import { isContextConsumer, isContextProvider, isElement, isForwardRef, isFragment, isPortal, typeOf } from "react-is";
 import {
   ComponentTypeElement,
   ContextConsumerElement,
@@ -52,11 +52,11 @@ function getChildren(element: ValidElement, config: StyledSnapshotConfig): Valid
       const ChildComponent = memoElement.type.type;
       children = <ChildComponent {...memoElement.props} />;
       break;
-    case typeOf(element) === ContextConsumer:
+    case isContextConsumer(element):
       const contextConsumerElement = element as ContextConsumerElement;
       children = contextConsumerElement.props.children(getExtractedContextValue(contexts, contextConsumerElement.type));
       break;
-    case typeOf(element) === ContextProvider:
+    case isContextProvider(element):
       const contextProviderElement = element as ContextProviderElement;
 
       extractContextValue(
@@ -68,19 +68,19 @@ function getChildren(element: ValidElement, config: StyledSnapshotConfig): Valid
 
       children = contextProviderElement.props.children;
       break;
-    case typeOf(element) === ForwardRef:
+    case isForwardRef(element):
       const forwardRef = element as ForwardRefElement;
       children = forwardRef.type.render({ ...forwardRef.props }, null);
       break;
-    case typeOf(element) === Portal:
+    case isPortal(element):
       const portal = element as ReactPortal;
       children = portal.children;
       break;
-    case typeOf(element) === Fragment:
+    case isFragment(element):
       const fragment = element as FragmentElement;
       children = fragment.props.children;
       break;
-    case typeOf(element) === Element && isString(element.type):
+    case isElement(element) && isString(element.type):
       const domElement = element as DomElement;
       children = domElement.props.children;
       break;

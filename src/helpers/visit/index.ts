@@ -1,7 +1,7 @@
 import { Func, ObjectMap } from "@repodog/types";
-import { castArray, isFunction, isPlainObject, isUndefined } from "lodash";
+import { castArray, isFunction, isObject, isPlainObject, isUndefined } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
-import { ForwardRef, isElement, isPortal } from "react-is";
+import { ForwardRef, isElement, isForwardRef, isPortal } from "react-is";
 import { PORTAL, RENDER_PROP } from "../../constants";
 import { SCForwardRefElement, SerializedTree, StyledSnapshotConfig, TreeNode } from "../../types";
 import createSnapshotElement from "../create-snapshot-element";
@@ -15,10 +15,30 @@ export default function visit(serializedComponent: SerializedTree, config: Style
 }
 
 function visitChildren(children: ReactElement | ReactElement[], config: StyledSnapshotConfig) {
-  return castArray(children).map(child => (isElement(child) ? visitElement(child, config) : child));
+  return castArray(children).map(child => visitValue(child, config));
 }
 
-function visitFunctionProp(val: Func | FunctionComponent, config: StyledSnapshotConfig) {
+function visitElement(element: ReactElement, config: StyledSnapshotConfig) {
+  const { reactTreeVisitor } = config;
+  const nodeClone = { props: { ...element.props } };
+  if (isFunction(reactTreeVisitor)) reactTreeVisitor(nodeClone);
+  let _element = element;
+
+  if (isStyledComponent(element)) {
+    const styledElement = element as SCForwardRefElement;
+    _element = { ...element, type: styledElement.type.displayName };
+  }
+
+  visitProps(nodeClone.props, config);
+
+  if (isObject(_element.type)) {
+    Reflect.deleteProperty(_element.type, "propTypes");
+  }
+
+  return cloneElement(_element, nodeClone.props);
+}
+
+function visitFunction(val: Func | FunctionComponent, config: StyledSnapshotConfig) {
   if (isFunctionComponent(val)) {
     const component = val as FunctionComponent;
     return Symbol(getComponentName(component));
@@ -27,7 +47,7 @@ function visitFunctionProp(val: Func | FunctionComponent, config: StyledSnapshot
 
     try {
       const output = func();
-      return isElement(output) ? createSnapshotElement(RENDER_PROP, visitElement(output, config)) : val;
+      return isElement(output) ? createSnapshotElement(visitElement(output, config), RENDER_PROP) : val;
     } catch (error) {
       return val;
     }
@@ -46,7 +66,7 @@ function visitNode(treeNode: TreeNode, config: StyledSnapshotConfig) {
     const children = treeNode.children as TreeNode[];
 
     children.forEach((child, index) => {
-      treeNode.children[index] = visitElement(child.node, config);
+      treeNode.children[index] = visitValue(visitElement(child.node, config), config);
     });
   }
 }
@@ -55,38 +75,28 @@ function visitProps(props: ObjectMap, config: StyledSnapshotConfig) {
   Object.keys(props).forEach(key => {
     const val = props[key];
 
-    switch (true) {
-      case isFunction(val):
-        props[key] = visitFunctionProp(val, config);
-        break;
-      case isElement(val):
-        props[key] = visitElement(val, config);
-        break;
-      case isPortal(val):
-        props[key] = createSnapshotElement(PORTAL, val.children);
-        break;
-      case isPlainObject(val) && val.$$typeof === ForwardRef:
-        props[key] = Symbol(getComponentName(val));
-        break;
-      case key === "children" && !isUndefined(val):
-        props[key] = visitChildren(props.children, config);
-        break;
-      // no default
+    if (key === "children" && !isUndefined(val)) {
+      props[key] = visitChildren(props.children, config);
+    } else {
+      props[key] = visitValue(val, config);
     }
   });
 }
 
-function visitElement(element: ReactElement, config: StyledSnapshotConfig) {
-  const { reactTreeVisitor } = config;
-  const nodeClone = { props: { ...element.props } };
-  if (isFunction(reactTreeVisitor)) reactTreeVisitor(nodeClone);
-  let _element = element;
-
-  if (isStyledComponent(element)) {
-    const styledElement = element as SCForwardRefElement;
-    _element = { ...element, type: styledElement.type.displayName };
+// tslint:disable-next-line no-any
+function visitValue(val: any, config: StyledSnapshotConfig) {
+  switch (true) {
+    case isForwardRef(val):
+      return createSnapshotElement(val);
+    case isFunction(val):
+      return visitFunction(val, config);
+    case isElement(val):
+      return visitElement(val, config);
+    case isPortal(val):
+      return createSnapshotElement(val.children, PORTAL);
+    case isPlainObject(val) && val.$$typeof === ForwardRef:
+      return Symbol(getComponentName(val));
+    default:
+      return val;
   }
-
-  visitProps(nodeClone.props, config);
-  return cloneElement(_element, nodeClone.props);
 }

@@ -66,8 +66,9 @@ exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
       <RenderProp(div) />
     </Context.Consumer>
   }
+  decorator={<WithTheme(ClassComponent) />}
   element={<FunctionComponent />}
-  forwardRef={<ForwardRef />}
+  forwardRef={<ForwardRefComponent />}
   fragment={<React.Fragment />}
   memo={<Memo(MemoComponent) />}
   portal={
@@ -87,7 +88,7 @@ exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
   }
   styled={Symbol(styled.div)}
 >
-  <ForwardRef />
+  <ForwardRefComponent />
   <FunctionComponent />
   <Memo(MemoComponent) />
 </ClassComponent>

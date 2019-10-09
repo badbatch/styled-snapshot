@@ -6,7 +6,7 @@ import { ComponentTypeElement, ForwardRefElement } from "../../types";
 import getElementName from "../get-element-name";
 import isComponentType from "../is-component-type";
 
-export default function createSnapshotElement(namePrefix: string, element: ReactElement) {
+export default function createSnapshotElement(element: ReactElement, namePrefix?: string) {
   const Component = (props: ObjectMap) => props.children;
   let name = "";
 
@@ -17,7 +17,7 @@ export default function createSnapshotElement(namePrefix: string, element: React
   }
 
   if (name) {
-    Component.displayName = `${namePrefix}(${name})`;
+    Component.displayName = namePrefix ? `${namePrefix}(${name})` : name;
     return createElement(Component, element.props, element.props.children);
   }
 

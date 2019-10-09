@@ -7,6 +7,7 @@ export interface ComponentProps {
   callback?: Func;
   Component?: ComponentType<{}>;
   consumer?: ContextConsumerElement;
+  decorator?: ForwardRefElement;
   element?: ReactElement;
   forwardRef?: ForwardRefElement;
   fragment?: ReactFragment;
