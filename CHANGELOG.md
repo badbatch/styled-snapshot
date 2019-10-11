@@ -1,3 +1,14 @@
+#### 0.1.17 (2019-10-11)
+
+##### Bug Fixes
+
+*  various bugs in generating snapshots ([7c461bee](https://github.com/dylanaubrey/styled-snapshot/commit/7c461bee5581841559a2b83b48de95366d887dd2))
+*  trim white space in collated css output ([a25c7236](https://github.com/dylanaubrey/styled-snapshot/commit/a25c72365ed65e0db165d5bfdbb4641520b467cc))
+
+##### Tests
+
+*  add js linting ([3dc6132d](https://github.com/dylanaubrey/styled-snapshot/commit/3dc6132da16702c1b6e13af9c74fba4564dda25a))
+
 #### 0.1.16 (2019-10-09)
 
 ##### New Features
