@@ -57,6 +57,26 @@ exports[`toMatchStyledSnapshot >> SCComponent >> component 1`] = `
 </styled.div>
 `;
 
+exports[`toMatchStyledSnapshot >> SerializeComponent >> component >> Styled(styled.div) 1`] = `
+"
+{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  position: relative;
+}
+"
+`;
+
+exports[`toMatchStyledSnapshot >> SerializeComponent >> component >> styled.ul 1`] = `
+"
+{
+  margin: 0;
+  padding: 0;
+}
+"
+`;
+
 exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
 <ClassComponent
   Component={Symbol(FunctionComponent)}
@@ -94,5 +114,11 @@ exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
   <FunctionComponent />
   <Memo(MemoComponent) />
   <Styled(FunctionComponent) />
+  <styled.ul>
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+  </styled.ul>
 </ClassComponent>
 `;

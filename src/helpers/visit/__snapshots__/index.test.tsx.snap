@@ -44,6 +44,12 @@ exports[`visit when a visitor is passed in to remove certain data should return 
   />
   <Memo(MemoComponent) />
   <Styled(FunctionComponent) />
+  <styled.ul>
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+  </styled.ul>
 </ClassComponent>
 `;
 
@@ -84,5 +90,11 @@ exports[`visit when run over a serialized component tree should return the corre
   <FunctionComponent />
   <Memo(MemoComponent) />
   <Styled(FunctionComponent) />
+  <styled.ul>
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+    <Styled(styled.div) />
+  </styled.ul>
 </ClassComponent>
 `;

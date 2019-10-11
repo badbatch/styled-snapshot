@@ -5,14 +5,13 @@ import { has } from "lodash";
 import React from "react";
 import visit from ".";
 import { SerializeComponent } from "../../__test__/components";
-import { SerializedTree } from "../../types";
 
 describe("visit", () => {
   describe("when run over a serialized component tree", () => {
     it("should return the correct structure", () => {
       const componentTree = shallow(<SerializeComponent />);
       const serializedTree = toJson(componentTree);
-      expect(visit(serializedTree as SerializedTree, {})).toMatchSnapshot();
+      expect(visit(serializedTree, {})).toMatchSnapshot();
     });
   });
 
@@ -27,7 +26,7 @@ describe("visit", () => {
         }
       };
 
-      expect(visit(serializedTree as SerializedTree, { reactTreeVisitor })).toMatchSnapshot();
+      expect(visit(serializedTree, { reactTreeVisitor })).toMatchSnapshot();
     });
   });
 });

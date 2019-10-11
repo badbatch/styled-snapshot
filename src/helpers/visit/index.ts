@@ -1,17 +1,19 @@
 import { Func, ObjectMap } from "@repodog/types";
-import { castArray, isFunction, isPlainObject, isUndefined } from "lodash";
+import { Json } from "enzyme-to-json";
+import { castArray, isFunction, isObject, isUndefined } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
-import { ForwardRef, isElement, isForwardRef, isPortal } from "react-is";
+import { isElement, isForwardRef, isPortal } from "react-is";
 import { PORTAL, RENDER_PROP } from "../../constants";
 import { SCForwardRefElement, SerializedTree, StyledSnapshotConfig, TreeNode } from "../../types";
 import createSnapshotElement from "../create-snapshot-element";
 import getComponentName from "../get-component-name";
+import isClassComponent from "../is-class-component";
 import isFunctionComponent from "../is-function-component";
 import isStyledComponent from "../is-styled-component";
 
-export default function visit(serializedComponent: SerializedTree, config: StyledSnapshotConfig) {
-  visitNode(serializedComponent, config);
-  return serializedComponent;
+export default function visit(serializedTree: Json, config: StyledSnapshotConfig) {
+  castArray(serializedTree).forEach(serializedBranch => visitNode(serializedBranch as SerializedTree, config));
+  return serializedTree;
 }
 
 function visitChildren(children: ReactElement | ReactElement[], config: StyledSnapshotConfig) {
@@ -61,7 +63,7 @@ function visitNode(treeNode: TreeNode, config: StyledSnapshotConfig) {
     const children = treeNode.children as TreeNode[];
 
     children.forEach((child, index) => {
-      treeNode.children[index] = visitValue(visitElement(child.node, config), config);
+      treeNode.children[index] = isObject(child) ? visitValue(visitElement(child.node, config), config) : child;
     });
   }
 }
@@ -81,16 +83,16 @@ function visitProps(props: ObjectMap, config: StyledSnapshotConfig) {
 // tslint:disable-next-line no-any
 function visitValue(val: any, config: StyledSnapshotConfig) {
   switch (true) {
-    case isForwardRef(val):
+    case isForwardRef(val) && !isStyledComponent(val):
       return createSnapshotElement(val);
+    case (!isForwardRef(val) && isStyledComponent(val)) || (!isElement(val) && isClassComponent(val)):
+      return Symbol(getComponentName(val));
     case isFunction(val):
       return visitFunction(val, config);
     case isElement(val):
       return visitElement(val, config);
     case isPortal(val):
       return createSnapshotElement(val.children, PORTAL);
-    case isPlainObject(val) && val.$$typeof === ForwardRef:
-      return Symbol(getComponentName(val));
     default:
       return val;
   }

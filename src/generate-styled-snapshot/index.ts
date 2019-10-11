@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import toJson, { Json } from "enzyme-to-json";
+import toJson from "enzyme-to-json";
 import { ReactNode } from "react";
 import collateCSS from "../helpers/collate-css";
 import { createCSSHash } from "../helpers/create-css-hash";
@@ -12,7 +12,7 @@ import { disablePropTypeWarnings, enablePropTypeWarnings } from "../helpers/prop
 import toCollateCSS from "../helpers/to-collate-css";
 import unwrap from "../helpers/unwrap";
 import visit from "../helpers/visit";
-import { SerializedTree, StyledSnapshotConfig } from "../types";
+import { StyledSnapshotConfig } from "../types";
 
 export default function generateStyledSnapshot(element: ReactNode, options: StyledSnapshotConfig = {}) {
   let config: StyledSnapshotConfig = {};
@@ -31,13 +31,11 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
   log.info("unwrapped element:", unwrappedElement);
 
   const componentTree = shallow(unwrappedElement);
-  let serializedTree: Json | SerializedTree = toJson(componentTree);
+  const serializedTree = toJson(componentTree);
+
   disablePropTypeWarnings();
 
-  if ("node" in serializedTree) {
-    serializedTree = visit(serializedTree, config);
-  }
-
+  const visitedSerializedTree = visit(serializedTree, config);
   const uniqueStyles: Map<string, [string, string]> = new Map();
 
   getStyledComponents(componentTree).forEach(wrapper => {
@@ -54,7 +52,9 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
     uniqueStyles.set(id, [displayName, formatted]);
   });
 
-  log.info("serialized element:", serializedTree);
+  log.info("serialized element:", visitedSerializedTree);
+
   enablePropTypeWarnings();
-  return { component: serializedTree, styles: uniqueStyles };
+
+  return { component: visitedSerializedTree, styles: uniqueStyles };
 }

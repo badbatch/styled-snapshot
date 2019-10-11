@@ -6,7 +6,7 @@ export function disablePropTypeWarnings() {
   consoleError = console.error;
 
   console.error = (message: string, ...optionalParams: any[]) => {
-    if (!/^(Warning: Failed prop type)/.test(message)) {
+    if (!/^(Warning: )/.test(message)) {
       consoleError(message, ...optionalParams);
     }
   };

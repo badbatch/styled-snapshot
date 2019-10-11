@@ -126,6 +126,11 @@ export const SerializeComponent = (props: ObjectMap = {}) => {
       <FunctionComponent {...props} />
       <MemoComponent />
       <StyledFunctionComponent />
+      <StyledList>
+        {[1, 2, 3, 4].map(id => (
+          <StyledStyledComponent key={id} />
+        ))}
+      </StyledList>
     </ClassComponent>
   );
 };
