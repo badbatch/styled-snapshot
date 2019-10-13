@@ -30,6 +30,7 @@ import isClassComponent from "../is-class-component";
 import isComponentType from "../is-component-type";
 import isMemoType from "../is-memo-type";
 import isStyledComponent from "../is-styled-component";
+import isValidElement from "../is-valid-element";
 import * as log from "../log";
 import toMandatoryUnwrap from "../to-mandatory-unwrap";
 
@@ -122,12 +123,11 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
   }
 
   const [singleNode] = filtered;
-  const isComponent = isComponentType(singleNode);
-  const isStyled = isStyledComponent(singleNode);
+  const isValid = isValidElement(singleNode);
   const toUnwrap = toMandatoryUnwrap(singleNode);
   const hasDataAttr = hasUnwrapDataAttribute(singleNode);
 
-  if (!isComponent && !isStyled && !toUnwrap && !hasDataAttr) {
+  if (!isValid && !toUnwrap && !hasDataAttr) {
     const message = `unwrap expected to receive a valid element, but received a ${String(typeOf(singleNode))}`;
     log.error(message, singleNode);
     throw new Error();
@@ -135,7 +135,7 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
 
   let elementToUnwrap: string | undefined;
 
-  if ((isComponent || isStyled) && !toUnwrap && !hasDataAttr) {
+  if (isValid && !toUnwrap && !hasDataAttr) {
     const componentOrStyledElement = singleNode as ComponentTypeElement | StyledComponentElement;
     elementToUnwrap = elementsToUnwrap.find(name => getElementName(componentOrStyledElement) === name);
     if (!elementToUnwrap) return componentOrStyledElement;

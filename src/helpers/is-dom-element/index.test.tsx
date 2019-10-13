@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeContext } from "styled-components";
-import isComponentType from ".";
+import isDomElement from ".";
 import {
   ClassComponent,
   ForwardRefComponent,
@@ -10,79 +10,79 @@ import {
 } from "../../__test__/components";
 import { StyledDiv } from "../../__test__/styled";
 
-describe("isComponentType", () => {
+describe("isDomElement", () => {
   describe("invalid elements", () => {
     describe("when a primitive is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(true)).toBe(false);
+        expect(isDomElement(true)).toBe(false);
       });
     });
 
-    describe("when a dom element is passed in", () => {
+    describe("when a Class component type is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(<div />)).toBe(false);
+        expect(isDomElement(<ClassComponent />)).toBe(false);
       });
     });
 
     describe("when an array of dom elements is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType([<div />, <div />, <div />])).toBe(false);
+        expect(isDomElement([<div />, <div />, <div />])).toBe(false);
       });
     });
 
     describe("when a Context Consumer is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(<ThemeContext.Consumer>{() => <div />}</ThemeContext.Consumer>)).toBe(false);
+        expect(isDomElement(<ThemeContext.Consumer>{() => <div />}</ThemeContext.Consumer>)).toBe(false);
       });
     });
 
     describe("when a Context Provider is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(<ThemeContext.Provider value="" />)).toBe(false);
+        expect(isDomElement(<ThemeContext.Provider value="" />)).toBe(false);
       });
     });
 
     describe("when a ForwardRef is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(<ForwardRefComponent />)).toBe(false);
+        expect(isDomElement(<ForwardRefComponent />)).toBe(false);
       });
     });
 
     describe("when a Fragment is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(<></>)).toBe(false);
+        expect(isDomElement(<></>)).toBe(false);
+      });
+    });
+
+    describe("when a Functional component is passed in", () => {
+      it("should return false", () => {
+        expect(isDomElement(<FunctionComponent />)).toBe(false);
       });
     });
 
     describe("when a Memo is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType((<MemoComponent />).type)).toBe(false); // tslint:disable-line prettier
+        expect(isDomElement((<MemoComponent />).type)).toBe(false); // tslint:disable-line prettier
       });
     });
 
     describe("when a Portal is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(portal)).toBe(false);
+        expect(isDomElement(portal)).toBe(false);
       });
     });
 
     describe("when a Styled Component is passed in", () => {
       it("should return false", () => {
-        expect(isComponentType(<StyledDiv />)).toBe(false);
+        expect(isDomElement(<StyledDiv />)).toBe(false);
       });
     });
   });
 
   describe("valid elements", () => {
-    describe("when a Class component type is passed in", () => {
+    describe("when a dom element is passed in", () => {
       it("should return true", () => {
-        expect(isComponentType(<ClassComponent />)).toBe(true);
-      });
-    });
-
-    describe("when a Functional component is passed in", () => {
-      it("should return true", () => {
-        expect(isComponentType(<FunctionComponent />)).toBe(true);
+        expect(isDomElement(<div />)).toBe(true);
       });
     });
   });
