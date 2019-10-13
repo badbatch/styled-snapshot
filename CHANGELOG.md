@@ -1,3 +1,9 @@
+#### 0.1.18 (2019-10-13)
+
+##### Bug Fixes
+
+*  add dom elements to list of valid elements ([b7341eed](https://github.com/dylanaubrey/styled-snapshot/commit/b7341eede8ee5775aa35ec4722e5ff3fe802997b))
+
 #### 0.1.17 (2019-10-11)
 
 ##### Bug Fixes
