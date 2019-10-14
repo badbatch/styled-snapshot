@@ -3,7 +3,7 @@ import { Json } from "enzyme-to-json";
 import { castArray, isFunction, isObject, isUndefined } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { isElement, isForwardRef, isPortal } from "react-is";
-import { PORTAL, RENDER_PROP } from "../../constants";
+import { PORTAL } from "../../constants";
 import { SCForwardRefElement, SerializedTree, StyledSnapshotConfig, TreeNode } from "../../types";
 import createSnapshotElement from "../create-snapshot-element";
 import getComponentName from "../get-component-name";
@@ -40,15 +40,20 @@ function visitFunction(val: Func | FunctionComponent, config: StyledSnapshotConf
     const component = val as FunctionComponent;
     return Symbol(getComponentName(component));
   } else {
-    const func = val as Func;
-
-    try {
-      const output = func();
-      return isElement(output) ? createSnapshotElement(visitElement(output, config), RENDER_PROP) : val;
-    } catch (error) {
-      return val;
-    }
+    return val;
   }
+
+  // Disabling functionality until I can find a better way of displaying
+  // render prop without having to execute every function and check result.
+
+  // const func = val as Func;
+
+  // try {
+  //   const output = func();
+  //   return isElement(output) ? createSnapshotElement(visitElement(output, config), RENDER_PROP) : val;
+  // } catch (error) {
+  //   return val;
+  // }
 }
 
 function visitNode(treeNode: TreeNode, config: StyledSnapshotConfig) {

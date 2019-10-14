@@ -83,7 +83,7 @@ exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
   callback={[Function]}
   consumer={
     <Context.Consumer>
-      <RenderProp(div) />
+      [Function]
     </Context.Consumer>
   }
   decorator={<WithTheme(ClassComponent) />}
@@ -101,11 +101,7 @@ exports[`toMatchStyledSnapshot >> SerializeComponent >> component 1`] = `
       value=""
     />
   }
-  renderProp={
-    <RenderProp(FunctionComponent)
-      renderProp={<RenderProp(div) />}
-    />
-  }
+  renderProp={[Function]}
   styled={Symbol(styled.div)}
   styledFunctionComponent={<Styled(FunctionComponent) />}
   styledStyledComponent={<Styled(styled.div) />}
