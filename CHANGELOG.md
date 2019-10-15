@@ -1,3 +1,9 @@
+#### 0.1.21 (2019-10-15)
+
+##### Bug Fixes
+
+*  adding safety checks to prop css logic ([52463835](https://github.com/dylanaubrey/styled-snapshot/commit/524638354d4c0816c947c18de59ced534700b596))
+
 #### 0.1.20 (2019-10-15)
 
 ##### New Features
