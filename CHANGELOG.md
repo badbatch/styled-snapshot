@@ -1,3 +1,13 @@
+#### 0.1.19 (2019-10-15)
+
+##### New Features
+
+*  re-introduce render prop logic ([5a14efec](https://github.com/dylanaubrey/styled-snapshot/commit/5a14efec4ee3b5b748e9b83bf9fab331156be8e4))
+
+##### Bug Fixes
+
+*  removing render prop functionality ([9239e495](https://github.com/dylanaubrey/styled-snapshot/commit/9239e49593d8d2cab01e1bf3485b7665ca3aaaaf))
+
 #### 0.1.18 (2019-10-13)
 
 ##### Bug Fixes
