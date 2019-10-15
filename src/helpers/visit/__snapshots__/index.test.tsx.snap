@@ -6,7 +6,7 @@ exports[`visit when a visitor is passed in to remove certain data should return 
   callback={[Function]}
   consumer={
     <Context.Consumer>
-      [Function]
+      <RenderProp(div) />
     </Context.Consumer>
   }
   decorator={<WithTheme(ClassComponent) />}
@@ -28,7 +28,12 @@ exports[`visit when a visitor is passed in to remove certain data should return 
       value=""
     />
   }
-  renderProp={[Function]}
+  renderProp={
+    <RenderProp(FunctionComponent)
+      renderProp={<RenderProp(div) />}
+      theme={null}
+    />
+  }
   styled={Symbol(styled.div)}
   styledFunctionComponent={<Styled(FunctionComponent) />}
   styledStyledComponent={<Styled(styled.div) />}
@@ -54,7 +59,7 @@ exports[`visit when run over a serialized component tree should return the corre
   callback={[Function]}
   consumer={
     <Context.Consumer>
-      [Function]
+      <RenderProp(div) />
     </Context.Consumer>
   }
   decorator={<WithTheme(ClassComponent) />}
@@ -72,7 +77,11 @@ exports[`visit when run over a serialized component tree should return the corre
       value=""
     />
   }
-  renderProp={[Function]}
+  renderProp={
+    <RenderProp(FunctionComponent)
+      renderProp={<RenderProp(div) />}
+    />
+  }
   styled={Symbol(styled.div)}
   styledFunctionComponent={<Styled(FunctionComponent) />}
   styledStyledComponent={<Styled(styled.div) />}

@@ -2,7 +2,7 @@ import { ObjectMap } from "@repodog/types";
 import PropTypes from "prop-types";
 import React, { Component, ComponentType, forwardRef, memo } from "react";
 import { createPortal } from "react-dom";
-import styled, { ThemeContext, ThemeProvider, withTheme } from "styled-components";
+import styled, { ThemeContext, ThemeProvider, css, withTheme } from "styled-components";
 import { StyledDiv, StyledItem, StyledList } from "./styled";
 import { ComponentProps } from "./types";
 
@@ -110,6 +110,10 @@ export const SerializeComponent = (props: ObjectMap = {}) => {
       Component={FunctionComponent}
       callback={() => null}
       consumer={<ThemeContext.Consumer>{() => <div />}</ThemeContext.Consumer>}
+      css={css`
+        display: block;
+        position: relative;
+      `}
       decorator={<WithThemeClassComponent />}
       element={<FunctionComponent {...props} />}
       forwardRef={<ForwardRefComponent />}
@@ -121,6 +125,10 @@ export const SerializeComponent = (props: ObjectMap = {}) => {
       styled={StyledDiv}
       styledFunctionComponent={<StyledFunctionComponent />}
       styledStyledComponent={<StyledStyledComponent />}
+      styles={css`
+        display: inline;
+        position: static;
+      `}
     >
       <ForwardRefComponent />
       <FunctionComponent {...props} />

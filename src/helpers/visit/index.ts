@@ -3,12 +3,13 @@ import { Json } from "enzyme-to-json";
 import { castArray, isFunction, isObject, isUndefined } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { isElement, isForwardRef, isPortal } from "react-is";
-import { PORTAL } from "../../constants";
+import { CHILDREN, CSS, PORTAL, RENDER_PROP, STYLES } from "../../constants";
 import { SCForwardRefElement, SerializedTree, StyledSnapshotConfig, TreeNode } from "../../types";
 import createSnapshotElement from "../create-snapshot-element";
 import getComponentName from "../get-component-name";
 import isClassComponent from "../is-class-component";
 import isFunctionComponent from "../is-function-component";
+import isFunctionRenderProp from "../is-function-render-prop";
 import isStyledComponent from "../is-styled-component";
 
 export default function visit(serializedTree: Json, config: StyledSnapshotConfig) {
@@ -39,21 +40,16 @@ function visitFunction(val: Func | FunctionComponent, config: StyledSnapshotConf
   if (isFunctionComponent(val)) {
     const component = val as FunctionComponent;
     return Symbol(getComponentName(component));
+  } else if (isFunctionRenderProp(val)) {
+    try {
+      const func = val as Func;
+      return createSnapshotElement(visitElement(func(), config), RENDER_PROP);
+    } catch (error) {
+      return val;
+    }
   } else {
     return val;
   }
-
-  // Disabling functionality until I can find a better way of displaying
-  // render prop without having to execute every function and check result.
-
-  // const func = val as Func;
-
-  // try {
-  //   const output = func();
-  //   return isElement(output) ? createSnapshotElement(visitElement(output, config), RENDER_PROP) : val;
-  // } catch (error) {
-  //   return val;
-  // }
 }
 
 function visitNode(treeNode: TreeNode, config: StyledSnapshotConfig) {
@@ -77,8 +73,10 @@ function visitProps(props: ObjectMap, config: StyledSnapshotConfig) {
   Object.keys(props).forEach(key => {
     const val = props[key];
 
-    if (key === "children" && !isUndefined(val)) {
+    if (key === CHILDREN && !isUndefined(val)) {
       props[key] = visitChildren(props.children, config);
+    } else if (key === CSS || key === STYLES) {
+      delete props[key];
     } else {
       props[key] = visitValue(val, config);
     }
