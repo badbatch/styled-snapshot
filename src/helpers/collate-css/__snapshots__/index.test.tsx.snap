@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`collateCSS when theme is passed in as false should return the correct structure 1`] = `
+exports[`collatePropsCSS when theme is passed in as false should return the correct structure 1`] = `
+"
+{
+  display: inline;
+  padding: null;
+}
+"
+`;
+
+exports[`collatePropsCSS when theme is passed in as true should return the correct structure 1`] = `
+"
+{
+  display: block;
+  padding: 24px;
+}
+"
+`;
+
+exports[`collateStyledCSS when theme is passed in as false should return the correct structure 1`] = `
 "
 {
   margin-left: 12px;
@@ -14,7 +32,7 @@ exports[`collateCSS when theme is passed in as false should return the correct s
 "
 `;
 
-exports[`collateCSS when theme is passed in as true should return the correct structure 1`] = `
+exports[`collateStyledCSS when theme is passed in as true should return the correct structure 1`] = `
 "
 {
   margin-left: 12px;

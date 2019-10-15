@@ -1,15 +1,15 @@
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import React from "react";
-import toGenerateStyledCSS from ".";
+import toCollateCSS from ".";
 import { StyledDiv } from "../../__test__/styled";
 
-describe("toGenerateStyledCSS", () => {
+describe("toCollateCSS", () => {
   describe("when the styled component does not have the ignore data attribute", () => {
     it("should return true", () => {
       const componentTree = shallow(<StyledDiv />);
       const serializedTree = toJson(componentTree);
-      expect(toGenerateStyledCSS(serializedTree)).toBe(true);
+      expect(toCollateCSS(serializedTree.props)).toBe(true);
     });
   });
 
@@ -17,7 +17,7 @@ describe("toGenerateStyledCSS", () => {
     it("should return false", () => {
       const componentTree = shallow(<StyledDiv data-styled-ignore />);
       const serializedTree = toJson(componentTree);
-      expect(toGenerateStyledCSS(serializedTree)).toBe(false);
+      expect(toCollateCSS(serializedTree.props)).toBe(false);
     });
   });
 });

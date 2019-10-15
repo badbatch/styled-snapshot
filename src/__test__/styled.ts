@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { FlattenInterpolation, ThemeProps, css } from "styled-components";
 import { ComponentProps } from "./types";
 
 export const StyledDiv = styled.div<ComponentProps>`
@@ -8,9 +8,16 @@ export const StyledDiv = styled.div<ComponentProps>`
   position: relative;
 `;
 
-export const StyledList = styled.ul`
+export const listStyles = css`
+  ${props => (props.theme ? "display: block" : "display: inline")};
+  padding: ${props => props.theme && "24px"};
+`;
+
+// tslint:disable-next-line no-any
+export const StyledList = styled.ul<{ css?: FlattenInterpolation<ThemeProps<any>> }>`
   margin: 0;
   padding: 0;
+  ${props => props.css};
 `;
 
 const itemStyles = css`

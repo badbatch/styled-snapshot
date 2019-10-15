@@ -57,6 +57,26 @@ exports[`toMatchStyledSnapshot >> SCComponent >> component 1`] = `
 </styled.div>
 `;
 
+exports[`toMatchStyledSnapshot >> SerializeComponent >> component >> ClassComponent props 1`] = `
+"
+{
+  display: block;
+  position: relative;
+  font-size: 16px;
+  line-height: 1.2;
+}
+"
+`;
+
+exports[`toMatchStyledSnapshot >> SerializeComponent >> component >> FunctionComponent props 1`] = `
+"
+{
+  display: block;
+  position: relative;
+}
+"
+`;
+
 exports[`toMatchStyledSnapshot >> SerializeComponent >> component >> Styled(styled.div) 1`] = `
 "
 {

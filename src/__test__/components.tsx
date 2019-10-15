@@ -126,12 +126,18 @@ export const SerializeComponent = (props: ObjectMap = {}) => {
       styledFunctionComponent={<StyledFunctionComponent />}
       styledStyledComponent={<StyledStyledComponent />}
       styles={css`
-        display: inline;
-        position: static;
+        font-size: 16px;
+        line-height: 1.2;
       `}
     >
       <ForwardRefComponent />
-      <FunctionComponent {...props} />
+      <FunctionComponent
+        {...props}
+        css={css`
+          display: block;
+          position: relative;
+        `}
+      />
       <MemoComponent />
       <StyledFunctionComponent />
       <StyledList>

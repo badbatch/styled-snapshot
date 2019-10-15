@@ -120,5 +120,12 @@ export type SCForwardRefComponent = ForwardRefComponent & { componentStyle: SCCo
 export type SCForwardRefElement = ReactElement<PropsWithChildren<{}>, SCForwardRefComponent>;
 
 export interface SCComponentStyle {
-  rules: Array<string | number | Func>;
+  rules: StyledRules;
+}
+
+export type StyledRules = Array<string | number | Func>;
+
+export interface CollateCSSProps extends ObjectMap {
+  css?: StyledRules;
+  styles?: StyledRules;
 }

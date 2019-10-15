@@ -1,6 +1,6 @@
-import { Json } from "enzyme-to-json";
+import { ObjectMap } from "@repodog/types";
 import { IGNORE_DATA_ATTR } from "../../constants";
 
-export default function toCollateCSS(serializedTree: Json) {
-  return !serializedTree.props[IGNORE_DATA_ATTR];
+export default function toCollateCSS(props: ObjectMap) {
+  return !props[IGNORE_DATA_ATTR];
 }

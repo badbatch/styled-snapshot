@@ -43,7 +43,8 @@ function visitFunction(val: Func | FunctionComponent, config: StyledSnapshotConf
   } else if (isFunctionRenderProp(val)) {
     try {
       const func = val as Func;
-      return createSnapshotElement(visitElement(func(), config), RENDER_PROP);
+      const output = func();
+      return isElement(output) ? createSnapshotElement(visitElement(output, config), RENDER_PROP) : val;
     } catch (error) {
       return val;
     }
@@ -76,7 +77,7 @@ function visitProps(props: ObjectMap, config: StyledSnapshotConfig) {
     if (key === CHILDREN && !isUndefined(val)) {
       props[key] = visitChildren(props.children, config);
     } else if (key === CSS || key === STYLES) {
-      delete props[key];
+      props[key] = undefined;
     } else {
       props[key] = visitValue(val, config);
     }

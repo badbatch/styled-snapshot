@@ -1,8 +1,10 @@
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import { ReactNode } from "react";
-import collateCSS from "../helpers/collate-css";
+import { ComponentType, ReactNode } from "react";
+import { collatePropsCSS, collateStyledCSS } from "../helpers/collate-css";
 import { createCSSHash } from "../helpers/create-css-hash";
+import getComponentName from "../helpers/get-component-name";
+import getElementsWithCSSProp from "../helpers/get-elements-with-css-prop";
 import getStyledComponents from "../helpers/get-styled-components";
 import getStyledDisplayName from "../helpers/get-styled-display-name";
 import loadConfig from "../helpers/load-config";
@@ -37,15 +39,30 @@ export default function generateStyledSnapshot(element: ReactNode, options: Styl
 
   const visitedSerializedTree = visit(serializedTree, config);
   const uniqueStyles: Map<string, [string, string]> = new Map();
+  const mergedContexts = mergeExtractedContexts(contexts);
 
   getStyledComponents(componentTree).forEach(wrapper => {
     const serializedStyledTree = toJson(wrapper.dive());
-    if (!toCollateCSS(serializedStyledTree) || !("node" in serializedStyledTree)) return;
+    if (!toCollateCSS(serializedStyledTree.props) || !("node" in serializedStyledTree)) return;
 
-    const { formatted, unformatted } = collateCSS(serializedStyledTree, mergeExtractedContexts(contexts));
+    const { formatted, unformatted } = collateStyledCSS(serializedStyledTree, mergedContexts);
     if (!unformatted) return;
 
     const displayName = getStyledDisplayName(serializedStyledTree);
+    const id = createCSSHash(displayName, unformatted);
+    if (uniqueStyles.has(id)) return;
+
+    uniqueStyles.set(id, [displayName, formatted]);
+  });
+
+  getElementsWithCSSProp(componentTree).forEach(wrapper => {
+    const props = wrapper.props();
+    if (!toCollateCSS(props)) return;
+
+    const { formatted, unformatted } = collatePropsCSS(props, mergedContexts);
+    if (!unformatted) return;
+
+    const displayName = `${getComponentName(wrapper.type() as ComponentType)} props`;
     const id = createCSSHash(displayName, unformatted);
     if (uniqueStyles.has(id)) return;
 
