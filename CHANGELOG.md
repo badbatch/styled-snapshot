@@ -1,3 +1,9 @@
+#### 0.1.20 (2019-10-15)
+
+##### New Features
+
+*  extract css/styles prop ([b62316a6](https://github.com/dylanaubrey/styled-snapshot/commit/b62316a6beff8899fc1877e89ad8e65122ccdf5c))
+
 #### 0.1.19 (2019-10-15)
 
 ##### New Features
