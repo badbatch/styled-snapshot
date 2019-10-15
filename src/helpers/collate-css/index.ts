@@ -34,8 +34,8 @@ function collateRules(rules: StyledRules, props: ObjectMap) {
 
 export function collatePropsCSS({ css, styles, ...otherProps }: CollateCSSProps, contexts: ObjectMap = {}) {
   let unformatted = "";
-  if (css) unformatted += collateRules(css, { ...otherProps, ...contexts }).trim();
-  if (styles) unformatted += collateRules(styles, { ...otherProps, ...contexts }).trim();
+  if (isArray(css)) unformatted += collateRules(css, { ...otherProps, ...contexts }).trim();
+  if (isArray(styles)) unformatted += collateRules(styles, { ...otherProps, ...contexts }).trim();
 
   return {
     formatted: `\n${format(`{${unformatted}}`, { parser: "css" }).trim()}\n`,

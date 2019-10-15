@@ -1,6 +1,6 @@
 import { Func, ObjectMap } from "@repodog/types";
 import { Json } from "enzyme-to-json";
-import { castArray, isFunction, isObject, isUndefined } from "lodash";
+import { castArray, isArray, isFunction, isObject, isUndefined } from "lodash";
 import { FunctionComponent, ReactElement, cloneElement } from "react";
 import { isElement, isForwardRef, isPortal } from "react-is";
 import { CHILDREN, CSS, PORTAL, RENDER_PROP, STYLES } from "../../constants";
@@ -77,7 +77,7 @@ function visitProps(props: ObjectMap, config: StyledSnapshotConfig) {
     if (key === CHILDREN && !isUndefined(val)) {
       props[key] = visitChildren(props.children, config);
     } else if (key === CSS || key === STYLES) {
-      props[key] = undefined;
+      props[key] = isArray(val) ? undefined : val;
     } else {
       props[key] = visitValue(val, config);
     }
