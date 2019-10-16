@@ -1,3 +1,9 @@
+#### 0.1.22 (2019-10-16)
+
+##### Bug Fixes
+
+*  dealing with children edge cases ([05c28714](https://github.com/dylanaubrey/styled-snapshot/commit/05c28714c72d47844e41392c1eb62823d954ea0e))
+
 #### 0.1.21 (2019-10-15)
 
 ##### Bug Fixes
