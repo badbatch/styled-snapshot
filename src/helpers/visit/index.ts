@@ -1,7 +1,7 @@
 import { Func, ObjectMap } from "@repodog/types";
 import { Json } from "enzyme-to-json";
 import { castArray, isArray, isFunction, isObject, isUndefined } from "lodash";
-import { FunctionComponent, ReactElement, cloneElement } from "react";
+import { Children, FunctionComponent, ReactElement, cloneElement } from "react";
 import { isElement, isForwardRef, isPortal } from "react-is";
 import { CHILDREN, CSS, PORTAL, RENDER_PROP, STYLES } from "../../constants";
 import { SCForwardRefElement, SerializedTree, StyledSnapshotConfig, TreeNode } from "../../types";
@@ -18,7 +18,9 @@ export default function visit(serializedTree: Json, config: StyledSnapshotConfig
 }
 
 function visitChildren(children: ReactElement | ReactElement[], config: StyledSnapshotConfig) {
-  return castArray(children).map(child => visitValue(child, config));
+  if (isFunction(children)) return visitFunction(children, config);
+
+  return Children.map(children, child => visitValue(child, config));
 }
 
 function visitElement(element: ReactElement, config: StyledSnapshotConfig) {

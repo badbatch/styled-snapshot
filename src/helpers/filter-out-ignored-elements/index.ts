@@ -8,6 +8,8 @@ import isComponentType from "../is-component-type";
 
 export default function filterOutIgnoredElements(nodes: ReactNode[], elementsToIgnore: string[] = []) {
   return nodes.filter(node => {
+    if (!node) return false;
+
     const elementToIgnore = elementsToIgnore.find(name => {
       return (
         (isComponentType(node) || isForwardRef(node)) &&

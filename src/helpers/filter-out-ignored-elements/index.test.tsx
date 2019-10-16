@@ -28,4 +28,11 @@ describe("filterOutIgnoredElements", () => {
       expect(getElementName(element as ComponentTypeElement)).toBe("FunctionComponent");
     });
   });
+
+  describe("when three of four elements are falsy", () => {
+    it("should return the one that is not falsy", () => {
+      const [element] = filterOutIgnoredElements([false, <FunctionComponent />, undefined, null]);
+      expect(getElementName(element as ComponentTypeElement)).toBe("FunctionComponent");
+    });
+  });
 });
