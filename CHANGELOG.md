@@ -1,3 +1,9 @@
+#### 0.1.23 (2019-10-17)
+
+##### Bug Fixes
+
+*  handle forward ref components as props ([a298d203](https://github.com/dylanaubrey/styled-snapshot/commit/a298d203a0837f96ac27c490196b865b0bd7ebc9))
+
 #### 0.1.22 (2019-10-16)
 
 ##### Bug Fixes
