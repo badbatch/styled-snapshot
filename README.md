@@ -15,11 +15,11 @@ You can install Styled Snapshot with the command below.
 yarn add styled-snapshot --dev
 ```
 
-The library depends on React, Jest, and Enzyme, so these also need to be installed in your project, along with
-core-js and @babel/runtime.
+The library depends on React, Styled Components, Jest, and Enzyme, so these also need to be installed in your project,
+along with core-js and @babel/runtime.
 
 ```shell
-yarn add react jest enzyme core-js@^2.6.5 @babel/runtime --dev
+yarn add react styled-components jest enzyme core-js@^2.6.5 @babel/runtime --dev
 ```
 
 ## Usage
