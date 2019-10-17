@@ -9,13 +9,13 @@
     "styled-components",
     "snapshot"
   ],
-  "homepage": "https://github.com/dylanaubrey/styled-snapshot",
+  "homepage": "https://github.com/badbatch/styled-snapshot",
   "bugs": {
-    "url": "https://github.com/dylanaubrey/styled-snapshot/issues"
+    "url": "https://github.com/badbatch/styled-snapshot/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dylanaubrey/styled-snapshot"
+    "url": "https://github.com/badbatch/styled-snapshot"
   },
   "license": "MIT",
   "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
