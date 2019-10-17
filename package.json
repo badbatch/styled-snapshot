@@ -3,6 +3,7 @@
   "version": "0.1.23",
   "description": "A utility for taking Jest snapshots of components that use Styled Components.",
   "keywords": [
+    "enzyme",
     "jest",
     "react",
     "styled-components",
@@ -65,7 +66,8 @@
     "core-js": "^2.5",
     "enzyme": "^3.10.0",
     "jest": "^24.9.0",
-    "react": "^16.9.0"
+    "react": "^16.8.0",
+    "styled-components": "^4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",

@@ -76,7 +76,7 @@ export interface StyledSnapshotConfig {
   unwrapCustomizer?: UnwrapCustomizer;
 }
 
-export type UnwrapCustomizer = (element: ValidElement) => ValidElement | ReactNode;
+export type UnwrapCustomizer = (element: ValidElement, config: StyledSnapshotConfig) => ValidElement | ReactNode;
 
 export type ComponentTree = ShallowWrapper<
   {

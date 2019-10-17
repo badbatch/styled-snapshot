@@ -14,4 +14,6 @@ export const CHILDREN = "children" as const;
 export const CSS = "css" as const;
 export const STYLES = "styles" as const;
 
+export const SC_CONTEXT_PROP = "theme" as const;
+
 export const RENDER_PROP_REGEXES = [/cloneElement\(/, /createElement\(/];

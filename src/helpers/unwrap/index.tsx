@@ -36,7 +36,7 @@ import toMandatoryUnwrap from "../to-mandatory-unwrap";
 
 let contexts: ExtractedContexts;
 
-function getChildren(element: ValidElement, config: StyledSnapshotConfig): ValidElement | ReactNode {
+export function defaultUnwrapChildren(element: ValidElement, config: StyledSnapshotConfig): ValidElement | ReactNode {
   let children: ValidElement | ReactNode;
 
   switch (true) {
@@ -143,7 +143,7 @@ function unwrapNode(node: ReactNode, config: StyledSnapshotConfig): ComponentTyp
 
   log.info("element to unwrap:", singleNode);
 
-  return unwrapNode((unwrapCustomizer || getChildren)(singleNode as ValidElement, config), config);
+  return unwrapNode((unwrapCustomizer || defaultUnwrapChildren)(singleNode as ValidElement, config), config);
 }
 
 export default function unwrap(node: ReactNode, config: StyledSnapshotConfig = {}) {

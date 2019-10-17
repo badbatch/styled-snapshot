@@ -16,8 +16,8 @@ exports[`toMatchStyledSnapshot >> SCComponent >> component >> styled.li 1`] = `
 {
   margin-left: 12px;
 
-  position: absolute;
-  padding: null;
+  position: relative;
+  padding: 12px;
   &:last-child {
     margin-left: 0;
   }
