@@ -1,3 +1,16 @@
+### 0.2.0 (2019-10-17)
+
+##### Documentation Changes
+
+*  minor updates to readme ([914f0801](https://github.com/dylanaubrey/styled-snapshot/commit/914f0801052b539139cf59dc5825ee1d37d0f704))
+*  complete readme ([3cbdeddd](https://github.com/dylanaubrey/styled-snapshot/commit/3cbdeddd5e7502e18f76c3fdd90103199b901ed5))
+*  update readme to make sure it is clear lib is still work in progress ([e5ccc3a2](https://github.com/dylanaubrey/styled-snapshot/commit/e5ccc3a2e592f8eced839e75f1d151ccfd46fc89))
+
+##### Bug Fixes
+
+*  add styled-components to installation guide ([95fb300e](https://github.com/dylanaubrey/styled-snapshot/commit/95fb300ed20d01c3398d4f5374a0fb0be8938bb0))
+*  add styled components context prop key assignment ([2d6edde3](https://github.com/dylanaubrey/styled-snapshot/commit/2d6edde3dfbe012e26aa96432984c0e6382d7bb3))
+
 #### 0.1.23 (2019-10-17)
 
 ##### Bug Fixes
