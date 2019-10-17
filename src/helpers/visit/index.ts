@@ -8,6 +8,7 @@ import { SCForwardRefElement, SerializedTree, StyledSnapshotConfig, TreeNode } f
 import createSnapshotElement from "../create-snapshot-element";
 import getComponentName from "../get-component-name";
 import isClassComponent from "../is-class-component";
+import isForwardRefComponent from "../is-forward-ref-component";
 import isFunctionComponent from "../is-function-component";
 import isFunctionRenderProp from "../is-function-render-prop";
 import isStyledComponent from "../is-styled-component";
@@ -39,10 +40,7 @@ function visitElement(element: ReactElement, config: StyledSnapshotConfig) {
 }
 
 function visitFunction(val: Func | FunctionComponent, config: StyledSnapshotConfig) {
-  if (isFunctionComponent(val)) {
-    const component = val as FunctionComponent;
-    return Symbol(getComponentName(component));
-  } else if (isFunctionRenderProp(val)) {
+  if (isFunctionRenderProp(val)) {
     try {
       const func = val as Func;
       const output = func();
@@ -91,7 +89,7 @@ function visitValue(val: any, config: StyledSnapshotConfig) {
   switch (true) {
     case isForwardRef(val) && !isStyledComponent(val):
       return createSnapshotElement(val);
-    case (!isForwardRef(val) && isStyledComponent(val)) || (!isElement(val) && isClassComponent(val)):
+    case (!isElement(val) && isClassComponent(val)) || isForwardRefComponent(val) || isFunctionComponent(val):
       return Symbol(getComponentName(val));
     case isFunction(val):
       return visitFunction(val, config);

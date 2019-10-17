@@ -52,6 +52,14 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "dependencies": {
+    "@repodog/constants": "^0.3.23",
+    "@repodog/helpers": "^0.3.23",
+    "enzyme-to-json": "^3.4.0",
+    "md5": "^2.2.1",
+    "prettier": "^1.18.2",
+    "react-is": "^16.9.0"
+  },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
     "core-js": "^2.5",
@@ -145,13 +153,5 @@
   },
   "engines": {
     "node": "^10.16.0"
-  },
-  "dependencies": {
-    "@repodog/constants": "^0.3.23",
-    "@repodog/helpers": "^0.3.23",
-    "enzyme-to-json": "^3.4.0",
-    "md5": "^2.2.1",
-    "prettier": "^1.18.2",
-    "react-is": "^16.9.0"
   }
 }
