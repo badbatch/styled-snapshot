@@ -2,7 +2,7 @@
 
 A utility for taking Jest snapshots of React elements that use Styled Components.
 
-[![Build Status](https://travis-ci.org/badbatch/styled-snapshot.svg?branch=master)](https://travis-ci.org/badbatch/styled-snapshot)
+[![Build Status](https://travis-ci.com/badbatch/styled-snapshot.svg?branch=master)](https://travis-ci.com/badbatch/styled-snapshot)
 [![codecov](https://codecov.io/gh/badbatch/styled-snapshot/branch/master/graph/badge.svg)](https://codecov.io/gh/badbatch/styled-snapshot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![npm version](https://badge.fury.io/js/styled-snapshot.svg)](https://badge.fury.io/js/styled-snapshot)
