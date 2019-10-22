@@ -1,3 +1,17 @@
+#### 0.2.1 (2019-10-22)
+
+##### Chores
+
+*  update dependencies ([9f9ef10d](https://github.com/badbatch/styled-snapshot/commit/9f9ef10d6f5f7201ba389b17e41e80ffbf7fa420))
+
+##### Documentation Changes
+
+*  update badge link ([6030a805](https://github.com/badbatch/styled-snapshot/commit/6030a805ac3276a4e86a769efe606e2d8d73b6d5))
+
+##### Bug Fixes
+
+*  update repo urls ([bc525f95](https://github.com/badbatch/styled-snapshot/commit/bc525f9507efb06b67336673ce0df6dcbd2eb03b))
+
 ### 0.2.0 (2019-10-17)
 
 ##### Documentation Changes
