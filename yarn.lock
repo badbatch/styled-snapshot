@@ -2131,27 +2131,27 @@
   resolved "https://registry.yarnpkg.com/@repodog/babel-config/-/babel-config-0.3.24.tgz#c69faee46d5c065a0c65b238bca25ca77aa8797d"
   integrity sha512-Tv4m52eodWaLdg6yct2kdyKR8fBD48cT5acFi7RAyo0fDfFlu8WS9yhjkJKeS9ZYj300YDfELkrPmJBbPYzJ8Q==
 
-"@repodog/build-references@^0.3.24":
-  version "0.3.24"
-  resolved "https://registry.yarnpkg.com/@repodog/build-references/-/build-references-0.3.24.tgz#f3a708c751dc27d7e13c943fa8169938bea8e8d5"
-  integrity sha512-ldOaFMore1UGfKB3SyC9i7gyXhkcb790G+c0sx+RLqE9M2y/Y05Co1/kQFnJYKOBnyVOzzOjMG6mGhVLE7oH8Q==
+"@repodog/build-references@^0.3.25":
+  version "0.3.25"
+  resolved "https://registry.yarnpkg.com/@repodog/build-references/-/build-references-0.3.25.tgz#1ccc5ddcef3104a823735fc6c0bd1811ab96c42e"
+  integrity sha512-L/QDsalK8MImmqbP/if+Vu2vMMmhNUHqwZh3QhRdAR9mzfsPDn10ve0s1w2gYYZa/7BC6axHPLl9OguSyiKCMQ==
 
 "@repodog/commitlint-config@^0.3.23":
   version "0.3.23"
   resolved "https://registry.yarnpkg.com/@repodog/commitlint-config/-/commitlint-config-0.3.23.tgz#acb7849a5b9426caeb842bd9fc9507696420db78"
   integrity sha512-hqGbM2oHJrGOw8QXQI6ij7ghleerrOfnRLEfn9e2AVLua5b180A1KOp1VgWxSHIV7oUAxz3U6wXp6Q44GLuq5g==
 
-"@repodog/config-helpers@^0.3.28":
-  version "0.3.28"
-  resolved "https://registry.yarnpkg.com/@repodog/config-helpers/-/config-helpers-0.3.28.tgz#604cbcf295690217e5dbb7b044c92b393cb501b6"
-  integrity sha512-Dr2zlUc3XOF7eQUZsHw3uXIsIMC3vz0w7X4reSjSyvUU3SCQBdGzVVnQVHx4XfJ9q7Poh+Ketftz3vTNwU0y7A==
+"@repodog/config-helpers@^0.3.29":
+  version "0.3.29"
+  resolved "https://registry.yarnpkg.com/@repodog/config-helpers/-/config-helpers-0.3.29.tgz#b9c26578e1de8d8a0ceea7c6819b7a8e1cdb1a35"
+  integrity sha512-0XTqzjLuwmQ4Dge5coDsofrOT5/VbVe2qMhTu1DkyhYa4UaJmHOaI7NDRU51d4dCzwGF0mql178kZf7bb1A8iw==
   dependencies:
     app-root-path "^2.2.1"
 
-"@repodog/constants@^0.3.24":
-  version "0.3.24"
-  resolved "https://registry.yarnpkg.com/@repodog/constants/-/constants-0.3.24.tgz#db3ce2b8172ec029d83d310f8293032c25b30557"
-  integrity sha512-foy0HDhxj+8JQhgq8NX/klVz4Wl2x821JKHEJu9EzUdaKFvcKG4eP/cL9GczTJOEp/XIg8JU6iXx1LhYnqd/ng==
+"@repodog/constants@^0.3.25":
+  version "0.3.25"
+  resolved "https://registry.yarnpkg.com/@repodog/constants/-/constants-0.3.25.tgz#b812421380315ec3bc26a3db3c97a830da840fe1"
+  integrity sha512-OgP8xeJEWp3AF9+ik4q6v0Xr6gsoRNymmpVXfUiRvzzafi1NGhmCylXT4n1ljNlbfufa6vZVgJ6t6RU9yw807w==
 
 "@repodog/eslint-config@^0.3.24":
   version "0.3.24"
@@ -2198,10 +2198,10 @@
     semver "^6.3.0"
     yargs "^14.2.0"
 
-"@repodog/new-repo@^0.3.26":
-  version "0.3.26"
-  resolved "https://registry.yarnpkg.com/@repodog/new-repo/-/new-repo-0.3.26.tgz#f0cd5db5576893fcf55bd1cc56ba2f3bc48c61c7"
-  integrity sha512-Ecz7gjzACBQRp8Tb+4A9iIHypv8IUoLIHdzvMkrQJbYPwm7cpY7w+vfeMSjklVREOml9serHerSxCqwJOgJOPA==
+"@repodog/new-repo@^0.3.27":
+  version "0.3.27"
+  resolved "https://registry.yarnpkg.com/@repodog/new-repo/-/new-repo-0.3.27.tgz#7c37113f2177266ce95f27ec9a21dce2f2b9e89a"
+  integrity sha512-8tCE0m+Qu0izIekqXfp+U6LmciqEr/se1EYsyl3fIvd1/I9DJgJTCzVQugdQnEV8blIpiahL1v51C4FNSl+E1Q==
   dependencies:
     inquirer "^7.0.0"
     semver "^6.3.0"
@@ -4319,10 +4319,10 @@ eslint-plugin-prettier@^3.1.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.1.2.tgz#1358d2acb2c5e02b7e90c37e611ac258a488e3a7"
-  integrity sha512-ZR+AyesAUGxJAyTFlF3MbzeVHAcQTFQt1fFVe5o0dzY/HFoj1dgQDMoIkiM+ltN/HhlHBYX4JpJwYonjxsyQMA==
+eslint-plugin-react-hooks@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.2.0.tgz#078264e9e388da6929ace09d6abe92c85963aff4"
+  integrity sha512-jSlnBjV2cmyIeL555H/FbvuSbQ1AtpHjLMHuPrQnt1eVA6lX8yufdygh7AArI2m8ct7ChHGx2uOaCuxq2MUn6g==
 
 eslint-plugin-react@^7.16.0:
   version "7.16.0"
@@ -7915,20 +7915,25 @@ rc@^1.2.7, rc@~1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.10.2:
-  version "16.10.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.10.2.tgz#4840bce5409176bc3a1f2bd8cb10b92db452fda6"
-  integrity sha512-kWGDcH3ItJK4+6Pl9DZB16BXYAZyrYQItU4OMy0jAkv5aNqc+mAKb4TpFtAteI6TJZu+9ZlNhaeNQSVQDHJzkw==
+react-dom@^16.11.0:
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.11.0.tgz#7e7c4a5a85a569d565c2462f5d345da2dd849af5"
+  integrity sha512-nrRyIUE1e7j8PaXSPtyRKtz+2y9ubW/ghNgqKFHHAHaeP0fpF5uXR+sq8IMRHC+ZUxw7W9NyCDTBtwWxvkb0iA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.16.2"
+    scheduler "^0.17.0"
 
 react-is@^16.10.2:
   version "16.10.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.10.2.tgz#984120fd4d16800e9a738208ab1fba422d23b5ab"
   integrity sha512-INBT1QEgtcCCgvccr5/86CfD71fw9EPmDxgiJX4I2Ddr6ZsV6iFXsuby+qWJPtmNuMY0zByTsG4468P7nHuNWA==
+
+react-is@^16.11.0:
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
+  integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
 
 react-is@^16.6.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   version "16.9.0"
@@ -7945,10 +7950,10 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.9.0"
     scheduler "^0.15.0"
 
-react@^16.10.2:
-  version "16.10.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.10.2.tgz#a5ede5cdd5c536f745173c8da47bda64797a4cf0"
-  integrity sha512-MFVIq0DpIhrHFyqLU0S3+4dIcBhhOvBE8bJ/5kHPVOVaGdo0KuiQzpcjCPsf585WvhypqtrMILyoE2th6dT+Lw==
+react@^16.11.0:
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.11.0.tgz#d294545fe62299ccee83363599bf904e4a07fdbb"
+  integrity sha512-M5Y8yITaLmU0ynd0r1Yvfq98Rmll6q8AxaEe88c8e7LxO8fZ2cNgmFt0aGAS9wzf1Ao32NKXtCl+/tVVtkxq6g==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -8490,10 +8495,10 @@ scheduler@^0.15.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-scheduler@^0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.16.2.tgz#f74cd9d33eff6fc554edfb79864868e4819132c1"
-  integrity sha512-BqYVWqwz6s1wZMhjFvLfVR5WXP7ZY32M/wYPo04CcuPM7XZEbV2TBNW7Z0UkguPTl0dWMA59VbNXxK6q+pHItg==
+scheduler@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.17.0.tgz#7c9c673e4ec781fac853927916d1c426b6f3ddfe"
+  integrity sha512-7rro8Io3tnCPuY4la/NuI5F2yfESpnfZyT6TtkXnSWVkcu0BCDJ+8gk5ozUaFaxpIyNuWAPXrH0yFcSi28fnDA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
