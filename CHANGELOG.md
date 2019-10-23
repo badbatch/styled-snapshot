@@ -1,3 +1,10 @@
+#### 0.2.2 (2019-10-23)
+
+##### Chores
+
+*  update node engine version and dependencies ([e8904ba4](https://github.com/badbatch/styled-snapshot/commit/e8904ba4dc1a79cfc361bbf4f3b31dc0a30d7620))
+*  upgrade node version ([4cec44bc](https://github.com/badbatch/styled-snapshot/commit/4cec44bc51355ae61e2ae54b6f07a76cb1935540))
+
 #### 0.2.1 (2019-10-22)
 
 ##### Chores
