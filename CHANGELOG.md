@@ -1,3 +1,9 @@
+#### 0.2.4 (2019-10-23)
+
+##### Chores
+
+*  update dependencies ([1987f31a](https://github.com/badbatch/styled-snapshot/commit/1987f31a54fa29b0a566ad9270b874268abbf056))
+
 #### 0.2.3 (2019-10-23)
 
 ##### Bug Fixes
