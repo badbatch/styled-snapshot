@@ -105,7 +105,7 @@
     "@repodog/lerna-config": "^0.3.23",
     "@repodog/markdownlint-config": "^0.3.23",
     "@repodog/new-package": "^0.3.24",
-    "@repodog/new-repo": "^0.3.27",
+    "@repodog/new-repo": "^0.3.28",
     "@repodog/prettier-config": "^0.3.24",
     "@repodog/ts-config": "^0.3.23",
     "@repodog/tslint-config": "^0.3.24",

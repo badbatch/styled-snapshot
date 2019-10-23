@@ -2198,10 +2198,10 @@
     semver "^6.3.0"
     yargs "^14.2.0"
 
-"@repodog/new-repo@^0.3.27":
-  version "0.3.27"
-  resolved "https://registry.yarnpkg.com/@repodog/new-repo/-/new-repo-0.3.27.tgz#7c37113f2177266ce95f27ec9a21dce2f2b9e89a"
-  integrity sha512-8tCE0m+Qu0izIekqXfp+U6LmciqEr/se1EYsyl3fIvd1/I9DJgJTCzVQugdQnEV8blIpiahL1v51C4FNSl+E1Q==
+"@repodog/new-repo@^0.3.28":
+  version "0.3.28"
+  resolved "https://registry.yarnpkg.com/@repodog/new-repo/-/new-repo-0.3.28.tgz#c3b6f6c73557096c792e42195c952f1c94bd80bc"
+  integrity sha512-JS+17ZkW+RmcKZdCxHNretrZotw8Z6wzaz+fvpkrXN9kFLAponYaLCRU2LlFOurYGiA9FJpljuDoYjg0p+SQxw==
   dependencies:
     inquirer "^7.0.0"
     semver "^6.3.0"
