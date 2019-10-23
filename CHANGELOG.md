@@ -1,3 +1,9 @@
+#### 0.2.3 (2019-10-23)
+
+##### Bug Fixes
+
+*  update npmignore ([dcf64434](https://github.com/badbatch/styled-snapshot/commit/dcf644346d9c7c81d65a7892be8213b061996c6e))
+
 #### 0.2.2 (2019-10-23)
 
 ##### Chores
