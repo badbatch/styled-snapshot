@@ -19,7 +19,7 @@ The library depends on React, Styled Components, Jest, and Enzyme, so these also
 along with core-js, @babel/runtime and lodash.
 
 ```shell
-yarn add react styled-components jest enzyme core-js@^2.6.5 @babel/runtime lodash --dev
+yarn add react styled-components jest enzyme core-js @babel/runtime lodash
 ```
 
 ## Usage
