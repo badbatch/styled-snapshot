@@ -7,6 +7,8 @@ A utility for taking Jest snapshots of React elements that use Styled Components
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![npm version](https://badge.fury.io/js/styled-snapshot.svg)](https://badge.fury.io/js/styled-snapshot)
 
+**This package does not work with v5 of Styled Components due to its use of React Hooks.**
+
 ## Installation
 
 You can install Styled Snapshot with the command below.
@@ -19,7 +21,7 @@ The library depends on React, Styled Components, Jest, and Enzyme, so these also
 along with core-js, @babel/runtime and lodash.
 
 ```shell
-yarn add react styled-components jest enzyme core-js @babel/runtime lodash
+yarn add react styled-components@^4 jest enzyme core-js @babel/runtime lodash
 ```
 
 ## Usage
