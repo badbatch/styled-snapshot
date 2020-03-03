@@ -1,4 +1,4 @@
-import { ObjectMap } from "@repodog/types";
+import { PlainObject } from "@repodog/types";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import { has } from "lodash";
@@ -20,7 +20,7 @@ describe("visit", () => {
       const componentTree = shallow(<SerializeComponent theme={{ type: "light" }} />);
       const serializedTree = toJson(componentTree);
 
-      const reactTreeVisitor = (node: ObjectMap) => {
+      const reactTreeVisitor = (node: PlainObject) => {
         if (has(node, ["props", "theme"])) {
           node.props.theme = null;
         }

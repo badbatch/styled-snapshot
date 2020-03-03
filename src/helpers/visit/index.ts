@@ -1,4 +1,4 @@
-import { Func, ObjectMap } from "@repodog/types";
+import { Func, PlainObject } from "@repodog/types";
 import { Json } from "enzyme-to-json";
 import { castArray, isArray, isFunction, isObject, isUndefined } from "lodash";
 import { Children, FunctionComponent, ReactElement, cloneElement } from "react";
@@ -70,7 +70,7 @@ function visitNode(treeNode: TreeNode, config: StyledSnapshotConfig) {
   }
 }
 
-function visitProps(props: ObjectMap, config: StyledSnapshotConfig) {
+function visitProps(props: PlainObject, config: StyledSnapshotConfig) {
   Object.keys(props).forEach(key => {
     const val = props[key];
 

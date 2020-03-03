@@ -1,9 +1,9 @@
-import { Func, ObjectMap } from "@repodog/types";
+import { Func, PlainObject } from "@repodog/types";
 import { isArray, isFunction } from "lodash";
 import { format } from "prettier";
 import { CollateCSSProps, SCSerializedTree, StyledRules } from "../../types";
 
-function collateRule(css: string, rule: string | number | Func, props: ObjectMap) {
+function collateRule(css: string, rule: string | number | Func, props: PlainObject) {
   const trimmedCSS = css.trim();
   let _css = "";
 
@@ -24,7 +24,7 @@ function collateRule(css: string, rule: string | number | Func, props: ObjectMap
   return _css;
 }
 
-function collateRules(rules: StyledRules, props: ObjectMap) {
+function collateRules(rules: StyledRules, props: PlainObject) {
   return rules.reduce((css: string, rule) => {
     let _css = css;
     _css += collateRule(css, rule, props);
@@ -32,7 +32,7 @@ function collateRules(rules: StyledRules, props: ObjectMap) {
   }, "");
 }
 
-export function collatePropsCSS({ css, styles, ...otherProps }: CollateCSSProps, contexts: ObjectMap = {}) {
+export function collatePropsCSS({ css, styles, ...otherProps }: CollateCSSProps, contexts: PlainObject = {}) {
   let unformatted = "";
   if (isArray(css)) unformatted += collateRules(css, { ...otherProps, ...contexts }).trim();
   if (isArray(styles)) unformatted += collateRules(styles, { ...otherProps, ...contexts }).trim();
@@ -43,7 +43,7 @@ export function collatePropsCSS({ css, styles, ...otherProps }: CollateCSSProps,
   };
 }
 
-export function collateStyledCSS(serializedTree: SCSerializedTree, contexts: ObjectMap = {}) {
+export function collateStyledCSS(serializedTree: SCSerializedTree, contexts: PlainObject = {}) {
   const { forwardedComponent, ...otherProps } = serializedTree.props;
   const { componentStyle } = forwardedComponent;
   const unformatted = collateRules(componentStyle.rules, { ...otherProps, ...contexts }).trim();

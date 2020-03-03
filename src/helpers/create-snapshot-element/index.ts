@@ -1,4 +1,4 @@
-import { ObjectMap } from "@repodog/types";
+import { PlainObject } from "@repodog/types";
 import { isString } from "lodash";
 import { ReactElement, createElement } from "react";
 import { isForwardRef } from "react-is";
@@ -7,7 +7,7 @@ import getElementName from "../get-element-name";
 import isComponentType from "../is-component-type";
 
 export default function createSnapshotElement(element: ReactElement, namePrefix?: string) {
-  const Component = (props: ObjectMap) => props.children;
+  const Component = (props: PlainObject) => props.children;
   let name = "";
 
   if (isString(element.type)) {

@@ -1,7 +1,6 @@
 import { isObject } from "lodash";
 import { ReactNode } from "react";
-import { ContextConsumer, ContextProvider, ForwardRef, Fragment, Portal, typeOf } from "react-is";
-import isMemoType from "../is-memo-type";
+import { ContextConsumer, ContextProvider, ForwardRef, Fragment, Memo, Portal, typeOf } from "react-is";
 import isStyledComponent from "../is-styled-component";
 
 export default function toMandatoryUnwrap(element: ReactNode) {
@@ -15,6 +14,6 @@ export default function toMandatoryUnwrap(element: ReactNode) {
     (typeSymbol === ForwardRef && !isStyledComponent(element)) ||
     typeSymbol === Fragment ||
     typeSymbol === Portal ||
-    isMemoType(element)
+    typeSymbol === Memo
   );
 }

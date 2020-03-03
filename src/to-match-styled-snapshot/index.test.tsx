@@ -1,4 +1,4 @@
-import { ObjectMap } from "@repodog/types";
+import { PlainObject } from "@repodog/types";
 import { has } from "lodash";
 import React from "react";
 import { ThemeProvider } from "styled-components";
@@ -7,7 +7,7 @@ import { SCComponent, SerializeComponent } from "../__test__/components";
 
 describe("toMatchStyledSnapshot >>", () => {
   describe("SCComponent >>", () => {
-    const visitor = (node: ObjectMap) => {
+    const visitor = (node: PlainObject) => {
       if (has(node, ["props", "theme"])) {
         node.props.theme = null;
       }
@@ -26,7 +26,7 @@ describe("toMatchStyledSnapshot >>", () => {
   });
 
   describe("SerializeComponent >>", () => {
-    const visitor = (node: ObjectMap) => {
+    const visitor = (node: PlainObject) => {
       if (has(node, ["props", "theme"])) {
         node.props.theme = null;
       }

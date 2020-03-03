@@ -7,5 +7,6 @@ export default function isMemoType(element: ReactNode) {
 
   if (!("type" in element)) return false;
 
-  return typeOf(element.type) === Memo;
+  const type = typeOf(element);
+  return type === Memo;
 }

@@ -1,4 +1,4 @@
-import { Func, ObjectMap } from "@repodog/types";
+import { Func, PlainObject } from "@repodog/types";
 import { ShallowWrapper } from "enzyme";
 import {
   ComponentClass,
@@ -65,7 +65,7 @@ export type StyledComponentElement = ReactElement<PropsWithChildren<{}>, AnyStyl
 
 export type ValidElement = ComponentTypeElement | StyledComponentElement | MandatoryUnwrapElement | DomElement;
 
-export type ReactTreeVisitor = (node: ObjectMap) => void;
+export type ReactTreeVisitor = (node: PlainObject) => void;
 
 export interface StyledSnapshotConfig {
   contextKeySetter?: (consumer: AnyConsumer) => string | undefined; // tslint:disable-line no-any
@@ -90,7 +90,7 @@ export interface SerializedTree {
   $$typeof: symbol;
   children: SerializedTree[] | ReactElement[];
   node: ReactElement;
-  props: ObjectMap;
+  props: PlainObject;
   type: string;
 }
 
@@ -123,9 +123,9 @@ export interface SCComponentStyle {
   rules: StyledRules;
 }
 
-export type StyledRules = Array<string | number | Func>;
+export type StyledRules = (string | number | Func)[];
 
-export interface CollateCSSProps extends ObjectMap {
+export interface CollateCSSProps extends PlainObject {
   css?: StyledRules;
   styles?: StyledRules;
 }

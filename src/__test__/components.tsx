@@ -1,4 +1,4 @@
-import { ObjectMap } from "@repodog/types";
+import { PlainObject } from "@repodog/types";
 import PropTypes from "prop-types";
 import React, { Component, ComponentType, forwardRef, memo } from "react";
 import { createPortal } from "react-dom";
@@ -104,7 +104,7 @@ SCContextComponent.displayName = "SCContextComponent";
 
 export const WithThemeClassComponent = withTheme<ComponentType<any>>(ClassComponent); // tslint:disable-line no-any
 
-export const SerializeComponent = (props: ObjectMap = {}) => {
+export const SerializeComponent = (props: PlainObject = {}) => {
   return (
     <ClassComponent
       Component={FunctionComponent}
