@@ -2,12 +2,12 @@
 
 A utility for taking Jest snapshots of React elements that use Styled Components.
 
+**This package does not work with v5 of Styled Components due to its use of React Hooks.**
+
 [![Build Status](https://travis-ci.com/badbatch/styled-snapshot.svg?branch=master)](https://travis-ci.com/badbatch/styled-snapshot)
 [![codecov](https://codecov.io/gh/badbatch/styled-snapshot/branch/master/graph/badge.svg)](https://codecov.io/gh/badbatch/styled-snapshot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![npm version](https://badge.fury.io/js/styled-snapshot.svg)](https://badge.fury.io/js/styled-snapshot)
-
-**This package does not work with v5 of Styled Components due to its use of React Hooks.**
 
 ## Installation
 
