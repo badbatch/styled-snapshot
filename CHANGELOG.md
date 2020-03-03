@@ -1,3 +1,17 @@
+#### 0.2.5 (2020-03-03)
+
+##### Chores
+
+*  upgrade dependencies and sort peer versions ([cb9bc780](https://github.com/badbatch/styled-snapshot/commit/cb9bc78087aa11a57534567812df7f11adf8d3b0))
+* **deps-dev:**  bump codecov from 3.6.1 to 3.6.5 ([e5d993d5](https://github.com/badbatch/styled-snapshot/commit/e5d993d5d8aacf83805d803d5a11f5c2ce3eb094))
+* **deps:**  bump handlebars from 4.2.0 to 4.5.3 ([4205b18f](https://github.com/badbatch/styled-snapshot/commit/4205b18fb6a33b5053d7b0a192b2546d58003694))
+
+##### Documentation Changes
+
+*  formatting change ([f8314fdc](https://github.com/badbatch/styled-snapshot/commit/f8314fdc1d79128195561bf943538958189834cf))
+*  react hooks disclaimer ([090d0646](https://github.com/badbatch/styled-snapshot/commit/090d06460e133291598fdeba5f8ba12bc6ff2eb0))
+*  update readme ([8ffaa349](https://github.com/badbatch/styled-snapshot/commit/8ffaa349048c0f3dfecc1afaf73a7b4c20401b21))
+
 #### 0.2.4 (2019-10-23)
 
 ##### Chores
